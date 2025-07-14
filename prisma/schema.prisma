@@ -1,0 +1,706 @@
+// This file should be identical in both CMS and E-commerce API repos
+// Located at: prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ================================
+// PRODUCT CATALOG MODELS
+// ================================
+
+model Category {
+  id             String  @id @default(cuid())
+  name           String
+  slug           String  @unique
+  description    String?
+  image          String?
+  seoTitle       String?
+  seoDescription String?
+  isActive       Boolean @default(true)
+  sortOrder      Int     @default(0)
+
+  // Self-referential relationship for hierarchy
+  parentId String?
+  parent   Category?  @relation("CategoryHierarchy", fields: [parentId], references: [id])
+  children Category[] @relation("CategoryHierarchy")
+
+  // Relationships
+  products   Product[]
+  attributes CategoryAttribute[]
+
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+  PromotionCategory PromotionCategory[]
+
+  @@index([slug])
+  @@index([parentId])
+  @@index([isActive, sortOrder])
+  @@map("categories")
+}
+
+model CategoryAttribute {
+  id         String        @id @default(cuid())
+  categoryId String
+  category   Category      @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  name       String // e.g., "Size", "Color", "Material"
+  type       AttributeType @default(TEXT)
+  required   Boolean       @default(false)
+  options    Json? // For SELECT/MULTI_SELECT types: ["S", "M", "L", "XL"]
+  sortOrder  Int           @default(0)
+
+  @@unique([categoryId, name])
+  @@map("category_attributes")
+}
+
+enum AttributeType {
+  TEXT
+  NUMBER
+  SELECT
+  MULTI_SELECT
+  BOOLEAN
+  COLOR
+}
+
+model Product {
+  id               String  @id @default(cuid())
+  name             String
+  slug             String  @unique
+  description      String?
+  shortDescription String?
+
+  // Pricing
+  basePrice    Decimal
+  comparePrice Decimal? // For showing discounts
+  costPrice    Decimal? // For profit calculations
+
+  // Media
+  images Json[] // Array of image URLs with metadata
+  videos Json[] // Array of video URLs
+
+  // SEO & Content
+  seoTitle       String?
+  seoDescription String?
+  tags           String[] // For search and filtering
+
+  // Status & Visibility
+  isActive         Boolean @default(true)
+  isFeatured       Boolean @default(false)
+  isDigital        Boolean @default(false)
+  requiresShipping Boolean @default(true)
+
+  // Inventory tracking
+  trackInventory    Boolean @default(true)
+  allowBackorder    Boolean @default(false)
+  lowStockThreshold Int?
+
+  // Relationships
+  categoryId String
+  category   Category @relation(fields: [categoryId], references: [id])
+  brandId    String?
+  brand      Brand?   @relation(fields: [brandId], references: [id])
+
+  variants          ProductVariant[]
+  inventory         Inventory[]
+  reviews           Review[]
+  cartItems         CartItem[]
+  orderItems        OrderItem[]
+  promotionProducts PromotionProduct[]
+
+  // Timestamps
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  publishedAt DateTime?
+
+  @@index([slug])
+  @@index([categoryId])
+  @@index([isActive, isFeatured])
+  @@index([createdAt])
+  @@map("products")
+}
+
+model Brand {
+  id          String  @id @default(cuid())
+  name        String  @unique
+  slug        String  @unique
+  description String?
+  logo        String?
+  website     String?
+  isActive    Boolean @default(true)
+
+  products Product[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("brands")
+}
+
+model ProductVariant {
+  id        String  @id @default(cuid())
+  productId String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  name    String // e.g., "Large / Red"
+  sku     String  @unique
+  barcode String?
+
+  // Pricing (overrides product base price if set)
+  price        Decimal?
+  comparePrice Decimal?
+  costPrice    Decimal?
+
+  // Variant-specific attributes
+  attributes Json // {size: "L", color: "#FF0000", material: "Cotton"}
+
+  // Media
+  images Json[] // Variant-specific images
+
+  // Status
+  isActive Boolean @default(true)
+
+  // Relationships
+  inventory  Inventory[]
+  cartItems  CartItem[]
+  orderItems OrderItem[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([productId])
+  @@index([sku])
+  @@map("product_variants")
+}
+
+model Inventory {
+  id String @id @default(cuid())
+
+  // Product reference (either product OR variant, not both)
+  productId String?
+  variantId String?
+  product   Product?        @relation(fields: [productId], references: [id], onDelete: Cascade)
+  variant   ProductVariant? @relation(fields: [variantId], references: [id], onDelete: Cascade)
+
+  // Inventory data
+  quantity  Int
+  reserved  Int @default(0) // Reserved for pending orders
+  available Int // Computed: quantity - reserved
+
+  // Warehouse/Location tracking
+  locationId String?
+  location   Location? @relation(fields: [locationId], references: [id])
+
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([productId, variantId, locationId])
+  @@index([quantity])
+  @@map("inventory")
+}
+
+model Location {
+  id        String  @id @default(cuid())
+  name      String
+  address   Json // Full address object
+  isActive  Boolean @default(true)
+  isDefault Boolean @default(false)
+
+  inventory Inventory[]
+
+  @@map("locations")
+}
+
+// ================================
+// USER & AUTHENTICATION MODELS
+// ================================
+
+model User {
+  id    String  @id @default(cuid())
+  email String  @unique
+  phone String? @unique
+
+  // Personal info
+  firstName   String
+  lastName    String
+  avatar      String?
+  dateOfBirth DateTime?
+  gender      Gender?
+
+  // Authentication
+  password    String? // Nullable for social login users
+  isVerified  Boolean   @default(false)
+  lastLoginAt DateTime?
+
+  // Preferences
+  language String @default("fr") // fr, en, wo (Wolof)
+  currency String @default("XOF") // West African CFA franc
+  timezone String @default("Africa/Dakar")
+
+  // Status
+  isActive  Boolean @default(true)
+  isBlocked Boolean @default(false)
+
+  // Relationships
+  addresses UserAddress[]
+  orders    Order[]
+  cart      CartItem[]
+  reviews   Review[]
+  sessions  UserSession[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([email])
+  @@index([phone])
+  @@map("users")
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+}
+
+model UserAddress {
+  id     String @id @default(cuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Address details
+  firstName    String
+  lastName     String
+  company      String?
+  addressLine1 String
+  addressLine2 String?
+  city         String
+  region       String // Dakar, Thiès, Saint-Louis, etc.
+  postalCode   String?
+  country      String  @default("SN") // Senegal
+  phone        String?
+
+  // Address type and status
+  type      AddressType @default(SHIPPING)
+  isDefault Boolean     @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+  @@map("user_addresses")
+}
+
+enum AddressType {
+  SHIPPING
+  BILLING
+  BOTH
+}
+
+model UserSession {
+  id     String @id @default(cuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  refreshToken String  @unique
+  deviceInfo   Json? // Browser, OS, etc.
+  ipAddress    String?
+  isActive     Boolean @default(true)
+
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([refreshToken])
+  @@map("user_sessions")
+}
+
+// ================================
+// SHOPPING CART MODELS
+// ================================
+
+model CartItem {
+  id     String @id @default(cuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  productId String
+  variantId String?
+  product   Product         @relation(fields: [productId], references: [id], onDelete: Cascade)
+  variant   ProductVariant? @relation(fields: [variantId], references: [id], onDelete: Cascade)
+
+  quantity  Int
+  addedAt   DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, productId, variantId])
+  @@index([userId])
+  @@map("cart_items")
+}
+
+// ================================
+// ORDER MANAGEMENT MODELS
+// ================================
+
+model Order {
+  id          String @id @default(cuid())
+  orderNumber String @unique // Human-readable order number
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  // Order status
+  status OrderStatus @default(PENDING)
+
+  // Pricing
+  subtotal       Decimal
+  taxAmount      Decimal @default(0)
+  shippingAmount Decimal @default(0)
+  discountAmount Decimal @default(0)
+  totalAmount    Decimal
+
+  // Addresses (stored as JSON for historical record)
+  shippingAddress Json
+  billingAddress  Json
+
+  // Payment
+  paymentMethod String // "wave", "card", "cash_on_delivery"
+  paymentStatus PaymentStatus @default(PENDING)
+  paymentId     String? // External payment reference
+
+  // Shipping
+  shippingMethod  String?
+  trackingNumber  String?
+  shippingCarrier String?
+
+  // Metadata
+  notes         String?
+  customerNotes String?
+
+  // Relationships
+  items     OrderItem[]
+  payments  Payment[]
+  shipments Shipment[]
+
+  // Timestamps
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  shippedAt   DateTime?
+  deliveredAt DateTime?
+  cancelledAt DateTime?
+  Promotion   Promotion? @relation(fields: [promotionId], references: [id])
+  promotionId String?
+
+  @@index([userId])
+  @@index([status])
+  @@index([orderNumber])
+  @@index([createdAt])
+  @@map("orders")
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+  RETURNED
+}
+
+enum PaymentStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+  CANCELLED
+  REFUNDED
+  PARTIALLY_REFUNDED
+}
+
+model OrderItem {
+  id      String @id @default(cuid())
+  orderId String
+  order   Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  productId String
+  variantId String?
+  product   Product         @relation(fields: [productId], references: [id])
+  variant   ProductVariant? @relation(fields: [variantId], references: [id])
+
+  // Item details at time of order
+  productName String
+  variantName String?
+  sku         String?
+
+  quantity   Int
+  unitPrice  Decimal
+  totalPrice Decimal
+
+  // Status for individual items
+  status OrderItemStatus @default(PENDING)
+
+  @@index([orderId])
+  @@map("order_items")
+}
+
+enum OrderItemStatus {
+  PENDING
+  CONFIRMED
+  SHIPPED
+  DELIVERED
+  CANCELLED
+  RETURNED
+}
+
+model Payment {
+  id      String @id @default(cuid())
+  orderId String
+  order   Order  @relation(fields: [orderId], references: [id])
+
+  amount   Decimal
+  currency String        @default("XOF")
+  method   String // "wave", "card", "bank_transfer"
+  status   PaymentStatus @default(PENDING)
+
+  // External payment details
+  externalId   String? // Payment provider's ID
+  providerData Json? // Provider-specific data
+
+  // Timestamps
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  processedAt DateTime?
+
+  @@index([orderId])
+  @@index([externalId])
+  @@map("payments")
+}
+
+model Shipment {
+  id      String @id @default(cuid())
+  orderId String
+  order   Order  @relation(fields: [orderId], references: [id])
+
+  trackingNumber String  @unique
+  carrier        String
+  service        String? // Standard, Express, etc.
+
+  status ShipmentStatus @default(PENDING)
+
+  // Tracking info
+  trackingEvents Json[]
+
+  // Timestamps
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  shippedAt   DateTime?
+  deliveredAt DateTime?
+
+  @@index([orderId])
+  @@index([trackingNumber])
+  @@map("shipments")
+}
+
+enum ShipmentStatus {
+  PENDING
+  SHIPPED
+  IN_TRANSIT
+  OUT_FOR_DELIVERY
+  DELIVERED
+  FAILED
+  RETURNED
+}
+
+// ================================
+// REVIEW SYSTEM MODELS
+// ================================
+
+model Review {
+  id     String @id @default(cuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  productId String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  rating  Int // 1-5 stars
+  title   String?
+  content String
+  images  Json[] // Review images
+
+  // Moderation
+  status      ReviewStatus @default(PENDING)
+  moderatedBy String?
+  moderatedAt DateTime?
+
+  // Helpfulness
+  helpfulCount Int @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, productId]) // One review per product per user
+  @@index([productId])
+  @@index([status])
+  @@map("reviews")
+}
+
+enum ReviewStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  HIDDEN
+}
+
+// ================================
+// PROMOTION SYSTEM MODELS
+// ================================
+
+model Promotion {
+  id          String  @id @default(cuid())
+  name        String
+  code        String? @unique // Coupon code (if applicable)
+  description String?
+
+  type  PromotionType
+  value Decimal // Percentage or fixed amount
+
+  // Conditions
+  minOrderAmount    Decimal?
+  maxDiscountAmount Decimal?
+  usageLimit        Int?
+  usageCount        Int      @default(0)
+  perUserLimit      Int?
+
+  // Validity
+  startDate DateTime
+  endDate   DateTime
+  isActive  Boolean  @default(true)
+
+  // Relationships
+  products   PromotionProduct[]
+  categories PromotionCategory[]
+  orders     Order[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([code])
+  @@index([startDate, endDate])
+  @@map("promotions")
+}
+
+enum PromotionType {
+  PERCENTAGE
+  FIXED_AMOUNT
+  FREE_SHIPPING
+  BUY_X_GET_Y
+}
+
+model PromotionProduct {
+  promotionId String
+  productId   String
+  promotion   Promotion @relation(fields: [promotionId], references: [id], onDelete: Cascade)
+  product     Product   @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@id([promotionId, productId])
+  @@map("promotion_products")
+}
+
+model PromotionCategory {
+  promotionId String
+  categoryId  String
+  promotion   Promotion @relation(fields: [promotionId], references: [id], onDelete: Cascade)
+  category    Category  @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@id([promotionId, categoryId])
+  @@map("promotion_categories")
+}
+
+// ================================
+// ANALYTICS & LOGGING MODELS
+// ================================
+
+model AuditLog {
+  id String @id @default(cuid())
+
+  // Action details
+  action   String // CREATE, UPDATE, DELETE, etc.
+  entity   String // Product, Order, User, etc.
+  entityId String
+
+  // User who performed the action
+  userId    String?
+  userEmail String?
+  userRole  String?
+
+  // Change details
+  oldValues Json?
+  newValues Json?
+
+  // Context
+  ipAddress String?
+  userAgent String?
+  source    String? // "admin", "api", "cms"
+
+  createdAt DateTime @default(now())
+
+  @@index([entity, entityId])
+  @@index([userId])
+  @@index([createdAt])
+  @@map("audit_logs")
+}
+
+model SystemSetting {
+  id    String @id @default(cuid())
+  key   String @unique
+  value Json
+  type  String // "string", "number", "boolean", "json"
+
+  description String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("system_settings")
+}
+
+// ================================
+// ADMIN USER MODELS (for CMS)
+// ================================
+
+model AdminUser {
+  id        String  @id @default(cuid())
+  email     String  @unique
+  firstName String
+  lastName  String
+  avatar    String?
+
+  password String
+  role     AdminRole @default(EDITOR)
+
+  // Permissions
+  permissions Json? // Custom permissions object
+
+  // Status
+  isActive    Boolean   @default(true)
+  lastLoginAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("admin_users")
+}
+
+enum AdminRole {
+  SUPER_ADMIN
+  ADMIN
+  MANAGER
+  EDITOR
+  VIEWER
+}
