@@ -39,24 +39,28 @@ async function main() {
 
     console.log('✅ Admin user created:', adminUser.email);
 
-    // Create default location
-    const defaultLocation = await prisma.location.upsert({
-      where: { name: 'Main Warehouse' },
-      update: {},
-      create: {
-        name: 'Main Warehouse',
-        address: {
-          addressLine1: 'Zone Industrielle',
-          city: 'Dakar',
-          region: 'Dakar',
-          country: 'SN',
-          postalCode: '11000'
-        },
-        isActive: true,
-        isDefault: true
-      }
+   
+    // Create default location - check if it exists first
+    let defaultLocation = await prisma.location.findFirst({
+      where: { name: 'Main Warehouse' }
     });
 
+    if (!defaultLocation) {
+      defaultLocation = await prisma.location.create({
+        data: {
+          name: 'Main Warehouse',
+          address: {
+            addressLine1: 'Zone Industrielle',
+            city: 'Dakar',
+            region: 'Dakar',
+            country: 'SN',
+            postalCode: '11000'
+          },
+          isActive: true,
+          isDefault: true
+        }
+      });
+    }
     console.log('✅ Default location created:', defaultLocation.name);
 
     // Create sample brands

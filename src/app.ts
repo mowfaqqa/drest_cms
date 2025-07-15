@@ -7,20 +7,20 @@ import cookieParser from 'cookie-parser';
 import rateLimit from 'express-rate-limit';
 import 'express-async-errors';
 
-import { logger, logRequest } from '@/utils/logger';
+import { logRequest } from '@/utils/logger';
 import { errorHandler } from '@/middleware/error.middleware';
-import { notFoundHandler } from '@/middleware/not-found.middleware';
+// import { notFoundHandler } from '@/middleware/not-found.middleware';
 import { authMiddleware } from '@/middleware/auth.middleware';
 
 // Import routes
 import authRoutes from '@/routes/auth.routes';
 import productRoutes from '@/routes/products.routes';
 import categoryRoutes from '@/routes/categories.routes';
-import brandRoutes from '@/routes/brands.routes';
-import inventoryRoutes from '@/routes/inventory.routes';
-import reviewRoutes from '@/routes/reviews.routes';
-import mediaRoutes from '@/routes/media.routes';
-import dashboardRoutes from '@/routes/dashboard.routes';
+// import brandRoutes from '@/routes/brands.routes';
+// import inventoryRoutes from '@/routes/inventory.routes';
+// import reviewRoutes from '@/routes/reviews.routes';
+// import mediaRoutes from '@/routes/media.routes';
+// import dashboardRoutes from '@/routes/dashboard.routes';
 
 const app = express();
 
@@ -122,11 +122,11 @@ const apiPrefix = process.env['API_PREFIX'] || '/api/v1';
 app.use(`${apiPrefix}/auth`, authRoutes);
 app.use(`${apiPrefix}/products`, authMiddleware, productRoutes);
 app.use(`${apiPrefix}/categories`, authMiddleware, categoryRoutes);
-app.use(`${apiPrefix}/brands`, authMiddleware, brandRoutes);
-app.use(`${apiPrefix}/inventory`, authMiddleware, inventoryRoutes);
-app.use(`${apiPrefix}/reviews`, authMiddleware, reviewRoutes);
-app.use(`${apiPrefix}/media`, authMiddleware, mediaRoutes);
-app.use(`${apiPrefix}/dashboard`, authMiddleware, dashboardRoutes);
+// app.use(`${apiPrefix}/brands`, authMiddleware, brandRoutes);
+// app.use(`${apiPrefix}/inventory`, authMiddleware, inventoryRoutes);
+// app.use(`${apiPrefix}/reviews`, authMiddleware, reviewRoutes);
+// app.use(`${apiPrefix}/media`, authMiddleware, mediaRoutes);
+// app.use(`${apiPrefix}/dashboard`, authMiddleware, dashboardRoutes);
 
 // Serve static files
 app.use('/uploads', express.static('uploads'));
@@ -152,7 +152,9 @@ app.get(`${apiPrefix}/docs`, (req, res) => {
 });
 
 // Handle 404 for API routes
-app.use(`${apiPrefix}/*`, notFoundHandler);
+app.use(`${apiPrefix}/*`, 
+    // notFoundHandler
+);
 
 // Handle 404 for other routes
 app.use('*', (req, res) => {

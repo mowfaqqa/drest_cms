@@ -250,7 +250,7 @@ export class CategoriesController {
    * Update category attribute
    */
   updateCategoryAttribute = asyncHandler(async (req: Request, res: Response) => {
-    const { id, attributeId } = req.params;
+    const { attributeId } = req.params;
     const updateData = req.body;
 
     const attribute = await this.categoryService.updateCategoryAttribute(attributeId, updateData);
@@ -268,7 +268,7 @@ export class CategoriesController {
    * Delete category attribute
    */
   deleteCategoryAttribute = asyncHandler(async (req: Request, res: Response) => {
-    const { id, attributeId } = req.params;
+    const { attributeId } = req.params;
 
     await this.categoryService.deleteCategoryAttribute(attributeId);
 

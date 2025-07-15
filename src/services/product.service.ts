@@ -10,8 +10,8 @@ interface ProductFilters {
   search?: string;
   categoryId?: string;
   brandId?: string;
-  isActive?: boolean;
-  isFeatured?: boolean;
+  isActive?: boolean | undefined;
+  isFeatured?: boolean | undefined;
 }
 
 interface PaginationOptions {
@@ -131,7 +131,7 @@ export class ProductService {
   /**
    * Get product by ID
    */
-  async getProductById(id: string, include: any) {
+  async getProductById(id: string, include: any = {}) {
     const includeClause: Prisma.ProductInclude = {
       _count: {
         select: {
@@ -453,26 +453,26 @@ export class ProductService {
 
     const duplicatedProduct = await prisma.product.create({
       data: {
-        // ...productData,
-    id: originalId, // Keep original ID to avoid conflicts
-    description: originalProduct.description,
-    seoTitle: originalProduct.seoTitle,
-    seoDescription: originalProduct.seoDescription,
-    shortDescription: originalProduct.shortDescription,
-    basePrice: originalProduct.basePrice,
-    createdAt: new Date(),
-    updatedAt: new Date(),
-    comparePrice: originalProduct.comparePrice,
-    costPrice: originalProduct.costPrice,
-    images: originalProduct.images as any,
-    videos: originalProduct.videos as any,
-    tags: originalProduct.tags,
-    requiresShipping: originalProduct.requiresShipping,
-    trackInventory: originalProduct.trackInventory,
-    allowBackorder: originalProduct.allowBackorder,
-    lowStockThreshold: originalProduct.lowStockThreshold!,
-    categoryId: originalProduct.categoryId,
-    brandId: originalProduct.brandId,
+        ...productData,
+        id: originalId, // Keep original ID to avoid conflicts
+        description: originalProduct.description,
+        seoTitle: originalProduct.seoTitle,
+        seoDescription: originalProduct.seoDescription,
+        shortDescription: originalProduct.shortDescription,
+        basePrice: originalProduct.basePrice,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        comparePrice: originalProduct.comparePrice,
+        costPrice: originalProduct.costPrice,
+        images: originalProduct.images as any,
+        videos: originalProduct.videos as any,
+        tags: originalProduct.tags,
+        requiresShipping: originalProduct.requiresShipping,
+        trackInventory: originalProduct.trackInventory,
+        allowBackorder: originalProduct.allowBackorder,
+        lowStockThreshold: originalProduct.lowStockThreshold!,
+        categoryId: originalProduct.categoryId,
+        brandId: originalProduct.brandId,
         name: productName,
         slug: finalSlug,
         isActive: false, // Start as inactive

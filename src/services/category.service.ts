@@ -13,15 +13,12 @@ interface CategoryOptions {
   };
 }
 
-interface FlatCategoryOptions extends CategoryOptions {
-  flat: true;
-}
 
 export class CategoryService {
   /**
    * Get category hierarchy (tree structure)
    */
-  async getCategoryHierarchy(options: CategoryOptions = {}) {
+  async getCategoryHierarchy(options: any) {
     // Build the where clause conditionally
     const whereClause: Prisma.CategoryWhereInput = {
       parentId: null
@@ -127,7 +124,7 @@ export class CategoryService {
   /**
    * Get flat list of categories with pagination
    */
-  async getFlatCategories(options: FlatCategoryOptions) {
+  async getFlatCategories(options: any) {
     const { pagination } = options;
 
     const where: Prisma.CategoryWhereInput = {};

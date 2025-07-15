@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { AuthService } from '@/services/auth.service';
 import { generateToken, generateRefreshToken } from '@/middleware/auth.middleware';
 import { AuthenticationError, ValidationError } from '@/middleware/error.middleware';
-import { logger, logSecurityEvent, logAudit } from '@/utils/logger';
+import { logSecurityEvent, logAudit } from '@/utils/logger';
 import { asyncHandler } from '@/middleware/error.middleware';
 
 export class AuthController {

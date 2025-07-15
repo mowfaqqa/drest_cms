@@ -86,7 +86,7 @@ export class AuthService {
   /**
    * Store refresh token in database
    */
-  async storeRefreshToken(userId: string, refreshToken: string, sessionData: SessionData) {
+  async storeRefreshToken(userId: string, refreshToken: string, sessionData: any) {
     const createData: {
       adminUserId: string;
       refreshToken: string;
