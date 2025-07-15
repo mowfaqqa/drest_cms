@@ -1,7 +1,7 @@
 import { Prisma } from '@prisma/client';
-import { prisma } from '@/config/database';
-import { NotFoundError, ValidationError, ConflictError } from '@/middleware/error.middleware';
-import { generateSlug } from '@/utils/slug';
+import { prisma } from '../config/database';
+import { NotFoundError, ValidationError, ConflictError } from '../middleware/error.middleware';
+import { generateSlug } from '../utils/slug';
 
 interface CategoryOptions {
   includeProducts?: boolean;

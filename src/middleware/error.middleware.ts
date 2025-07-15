@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { Prisma } from '@prisma/client';
-import { logger, logError } from '@/utils/logger';
+import { logger, logError } from '../utils/logger';
 
 // Custom error class
 export class AppError extends Error {
@@ -180,6 +180,8 @@ export const errorHandler = (
   // Send error response
   const errorResponse = formatErrorResponse(appError, req);
   res.status(appError.statusCode).json(errorResponse);
+
+  next();
 };
 
 // Not found middleware

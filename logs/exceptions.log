@@ -1,0 +1,2805 @@
+{
+  error: [96msrc/middleware/error.middleware.ts[0m:[93m140[0m:[93m3[0m - [91merror[0m[90m TS6133: [0m'next' is declared but its value is never read.
+  
+  [7m140[0m   next: NextFunction
+  [7m   [0m [91m  ~~~~[0m
+  ,
+  level: 'error',
+  message: 'uncaughtException: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    'TSError: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    '    at createTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:859:12)\n' +
+    '    at reportTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:863:19)\n' +
+    '    at getOutput (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1077:36)\n' +
+    '    at Object.compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1433:41)\n' +
+    '    at Module.m._compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1617:30)\n' +
+    '    at node:internal/modules/cjs/loader:1895:10\n' +
+    '    at Object.require.extensions.<computed> [as .ts] (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1621:12)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1465:32)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1282:12)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)',
+  stack: 'TSError: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    '    at createTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:859:12)\n' +
+    '    at reportTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:863:19)\n' +
+    '    at getOutput (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1077:36)\n' +
+    '    at Object.compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1433:41)\n' +
+    '    at Module.m._compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1617:30)\n' +
+    '    at node:internal/modules/cjs/loader:1895:10\n' +
+    '    at Object.require.extensions.<computed> [as .ts] (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1621:12)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1465:32)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1282:12)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)',
+  exception: true,
+  date: 'Tue Jul 15 2025 07:28:57 GMT-0700 (Pacific Daylight Time)',
+  process: {
+    pid: 56943,
+    uid: 501,
+    gid: 20,
+    cwd: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms',
+    execPath: '/Users/muwaf/.nvm/versions/node/v22.17.0/bin/node',
+    version: 'v22.17.0',
+    argv: [
+      '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/.bin/ts-node',
+      '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/src/server.ts'
+    ],
+    memoryUsage: {
+      rss: 321486848,
+      heapTotal: 262553600,
+      heapUsed: 238078104,
+      external: 7698593,
+      arrayBuffers: 4868228
+    }
+  },
+  os: {
+    loadavg: [ 1.419921875, 2.142578125, 2.24951171875 ],
+    uptime: 221379
+  },
+  trace: [
+    {
+      column: 12,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'createTSError',
+      line: 859,
+      method: null,
+      native: false
+    },
+    {
+      column: 19,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'reportTSError',
+      line: 863,
+      method: null,
+      native: false
+    },
+    {
+      column: 36,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'getOutput',
+      line: 1077,
+      method: null,
+      native: false
+    },
+    {
+      column: 41,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Object.compile',
+      line: 1433,
+      method: 'compile',
+      native: false
+    },
+    {
+      column: 30,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Module.m._compile',
+      line: 1617,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'node:internal/modules/cjs/loader',
+      function: null,
+      line: 1895,
+      method: null,
+      native: false
+    },
+    {
+      column: 12,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Object.require.extensions.<computed> [as .ts]',
+      line: 1621,
+      method: 'ts]',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Module.load',
+      line: 1465,
+      method: 'load',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Function._load',
+      line: 1282,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'node:diagnostics_channel',
+      function: 'TracingChannel.traceSync',
+      line: 322,
+      method: 'traceSync',
+      native: false
+    }
+  ],
+  service: 'drest_cms',
+  environment: 'development',
+  timestamp: '2025-07-15 07:28:57'
+}
+{
+  error: [96msrc/middleware/error.middleware.ts[0m:[93m140[0m:[93m3[0m - [91merror[0m[90m TS6133: [0m'next' is declared but its value is never read.
+  
+  [7m140[0m   next: NextFunction
+  [7m   [0m [91m  ~~~~[0m
+  ,
+  level: 'error',
+  message: 'uncaughtException: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    'TSError: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    '    at createTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:859:12)\n' +
+    '    at reportTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:863:19)\n' +
+    '    at getOutput (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1077:36)\n' +
+    '    at Object.compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1433:41)\n' +
+    '    at Module.m._compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1617:30)\n' +
+    '    at node:internal/modules/cjs/loader:1895:10\n' +
+    '    at Object.require.extensions.<computed> [as .ts] (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1621:12)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1465:32)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1282:12)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)',
+  stack: 'TSError: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    '    at createTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:859:12)\n' +
+    '    at reportTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:863:19)\n' +
+    '    at getOutput (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1077:36)\n' +
+    '    at Object.compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1433:41)\n' +
+    '    at Module.m._compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1617:30)\n' +
+    '    at node:internal/modules/cjs/loader:1895:10\n' +
+    '    at Object.require.extensions.<computed> [as .ts] (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1621:12)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1465:32)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1282:12)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)',
+  exception: true,
+  date: 'Tue Jul 15 2025 07:32:43 GMT-0700 (Pacific Daylight Time)',
+  process: {
+    pid: 58012,
+    uid: 501,
+    gid: 20,
+    cwd: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms',
+    execPath: '/Users/muwaf/.nvm/versions/node/v22.17.0/bin/node',
+    version: 'v22.17.0',
+    argv: [
+      '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/.bin/ts-node',
+      '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/src/server.ts'
+    ],
+    memoryUsage: {
+      rss: 321044480,
+      heapTotal: 255475712,
+      heapUsed: 224537272,
+      external: 7708898,
+      arrayBuffers: 4860983
+    }
+  },
+  os: {
+    loadavg: [ 2.04345703125, 2.1513671875, 2.2255859375 ],
+    uptime: 221605
+  },
+  trace: [
+    {
+      column: 12,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'createTSError',
+      line: 859,
+      method: null,
+      native: false
+    },
+    {
+      column: 19,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'reportTSError',
+      line: 863,
+      method: null,
+      native: false
+    },
+    {
+      column: 36,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'getOutput',
+      line: 1077,
+      method: null,
+      native: false
+    },
+    {
+      column: 41,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Object.compile',
+      line: 1433,
+      method: 'compile',
+      native: false
+    },
+    {
+      column: 30,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Module.m._compile',
+      line: 1617,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'node:internal/modules/cjs/loader',
+      function: null,
+      line: 1895,
+      method: null,
+      native: false
+    },
+    {
+      column: 12,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Object.require.extensions.<computed> [as .ts]',
+      line: 1621,
+      method: 'ts]',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Module.load',
+      line: 1465,
+      method: 'load',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Function._load',
+      line: 1282,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'node:diagnostics_channel',
+      function: 'TracingChannel.traceSync',
+      line: 322,
+      method: 'traceSync',
+      native: false
+    }
+  ],
+  service: 'drest_cms',
+  environment: 'development',
+  timestamp: '2025-07-15 07:32:43'
+}
+{
+  error: [96msrc/middleware/error.middleware.ts[0m:[93m140[0m:[93m3[0m - [91merror[0m[90m TS6133: [0m'next' is declared but its value is never read.
+  
+  [7m140[0m   next: NextFunction
+  [7m   [0m [91m  ~~~~[0m
+  ,
+  level: 'error',
+  message: 'uncaughtException: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    'TSError: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    '    at createTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:859:12)\n' +
+    '    at reportTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:863:19)\n' +
+    '    at getOutput (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1077:36)\n' +
+    '    at Object.compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1433:41)\n' +
+    '    at Module.m._compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1617:30)\n' +
+    '    at node:internal/modules/cjs/loader:1895:10\n' +
+    '    at Object.require.extensions.<computed> [as .ts] (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1621:12)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1465:32)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1282:12)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)',
+  stack: 'TSError: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    '    at createTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:859:12)\n' +
+    '    at reportTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:863:19)\n' +
+    '    at getOutput (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1077:36)\n' +
+    '    at Object.compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1433:41)\n' +
+    '    at Module.m._compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1617:30)\n' +
+    '    at node:internal/modules/cjs/loader:1895:10\n' +
+    '    at Object.require.extensions.<computed> [as .ts] (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1621:12)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1465:32)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1282:12)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)',
+  exception: true,
+  date: 'Tue Jul 15 2025 07:32:51 GMT-0700 (Pacific Daylight Time)',
+  process: {
+    pid: 58072,
+    uid: 501,
+    gid: 20,
+    cwd: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms',
+    execPath: '/Users/muwaf/.nvm/versions/node/v22.17.0/bin/node',
+    version: 'v22.17.0',
+    argv: [
+      '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/.bin/ts-node',
+      '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/src/server.ts'
+    ],
+    memoryUsage: {
+      rss: 341327872,
+      heapTotal: 264126464,
+      heapUsed: 240638040,
+      external: 7698521,
+      arrayBuffers: 4868156
+    }
+  },
+  os: { loadavg: [ 1.728515625, 2.080078125, 2.19921875 ], uptime: 221613 },
+  trace: [
+    {
+      column: 12,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'createTSError',
+      line: 859,
+      method: null,
+      native: false
+    },
+    {
+      column: 19,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'reportTSError',
+      line: 863,
+      method: null,
+      native: false
+    },
+    {
+      column: 36,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'getOutput',
+      line: 1077,
+      method: null,
+      native: false
+    },
+    {
+      column: 41,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Object.compile',
+      line: 1433,
+      method: 'compile',
+      native: false
+    },
+    {
+      column: 30,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Module.m._compile',
+      line: 1617,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'node:internal/modules/cjs/loader',
+      function: null,
+      line: 1895,
+      method: null,
+      native: false
+    },
+    {
+      column: 12,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Object.require.extensions.<computed> [as .ts]',
+      line: 1621,
+      method: 'ts]',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Module.load',
+      line: 1465,
+      method: 'load',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Function._load',
+      line: 1282,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'node:diagnostics_channel',
+      function: 'TracingChannel.traceSync',
+      line: 322,
+      method: 'traceSync',
+      native: false
+    }
+  ],
+  service: 'drest_cms',
+  environment: 'development',
+  timestamp: '2025-07-15 07:32:51'
+}
+{
+  error: [96msrc/middleware/error.middleware.ts[0m:[93m140[0m:[93m3[0m - [91merror[0m[90m TS6133: [0m'next' is declared but its value is never read.
+  
+  [7m140[0m   next: NextFunction
+  [7m   [0m [91m  ~~~~[0m
+  ,
+  level: 'error',
+  message: 'uncaughtException: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    'TSError: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    '    at createTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:859:12)\n' +
+    '    at reportTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:863:19)\n' +
+    '    at getOutput (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1077:36)\n' +
+    '    at Object.compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1433:41)\n' +
+    '    at Module.m._compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1617:30)\n' +
+    '    at node:internal/modules/cjs/loader:1895:10\n' +
+    '    at Object.require.extensions.<computed> [as .ts] (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1621:12)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1465:32)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1282:12)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)',
+  stack: 'TSError: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    '    at createTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:859:12)\n' +
+    '    at reportTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:863:19)\n' +
+    '    at getOutput (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1077:36)\n' +
+    '    at Object.compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1433:41)\n' +
+    '    at Module.m._compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1617:30)\n' +
+    '    at node:internal/modules/cjs/loader:1895:10\n' +
+    '    at Object.require.extensions.<computed> [as .ts] (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1621:12)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1465:32)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1282:12)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)',
+  exception: true,
+  date: 'Tue Jul 15 2025 07:33:48 GMT-0700 (Pacific Daylight Time)',
+  process: {
+    pid: 58369,
+    uid: 501,
+    gid: 20,
+    cwd: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms',
+    execPath: '/Users/muwaf/.nvm/versions/node/v22.17.0/bin/node',
+    version: 'v22.17.0',
+    argv: [
+      '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/.bin/ts-node',
+      '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/src/server.ts'
+    ],
+    memoryUsage: {
+      rss: 310411264,
+      heapTotal: 261505024,
+      heapUsed: 237585288,
+      external: 7698505,
+      arrayBuffers: 4868140
+    }
+  },
+  os: {
+    loadavg: [ 2.04052734375, 2.12158203125, 2.20654296875 ],
+    uptime: 221670
+  },
+  trace: [
+    {
+      column: 12,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'createTSError',
+      line: 859,
+      method: null,
+      native: false
+    },
+    {
+      column: 19,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'reportTSError',
+      line: 863,
+      method: null,
+      native: false
+    },
+    {
+      column: 36,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'getOutput',
+      line: 1077,
+      method: null,
+      native: false
+    },
+    {
+      column: 41,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Object.compile',
+      line: 1433,
+      method: 'compile',
+      native: false
+    },
+    {
+      column: 30,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Module.m._compile',
+      line: 1617,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'node:internal/modules/cjs/loader',
+      function: null,
+      line: 1895,
+      method: null,
+      native: false
+    },
+    {
+      column: 12,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Object.require.extensions.<computed> [as .ts]',
+      line: 1621,
+      method: 'ts]',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Module.load',
+      line: 1465,
+      method: 'load',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Function._load',
+      line: 1282,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'node:diagnostics_channel',
+      function: 'TracingChannel.traceSync',
+      line: 322,
+      method: 'traceSync',
+      native: false
+    }
+  ],
+  service: 'drest_cms',
+  environment: 'development',
+  timestamp: '2025-07-15 07:33:48'
+}
+{
+  error: [96msrc/middleware/error.middleware.ts[0m:[93m140[0m:[93m3[0m - [91merror[0m[90m TS6133: [0m'next' is declared but its value is never read.
+  
+  [7m140[0m   next: NextFunction
+  [7m   [0m [91m  ~~~~[0m
+  ,
+  level: 'error',
+  message: 'uncaughtException: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    'TSError: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    '    at createTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:859:12)\n' +
+    '    at reportTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:863:19)\n' +
+    '    at getOutput (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1077:36)\n' +
+    '    at Object.compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1433:41)\n' +
+    '    at Module.m._compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1617:30)\n' +
+    '    at node:internal/modules/cjs/loader:1895:10\n' +
+    '    at Object.require.extensions.<computed> [as .ts] (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1621:12)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1465:32)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1282:12)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)',
+  stack: 'TSError: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    '    at createTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:859:12)\n' +
+    '    at reportTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:863:19)\n' +
+    '    at getOutput (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1077:36)\n' +
+    '    at Object.compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1433:41)\n' +
+    '    at Module.m._compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1617:30)\n' +
+    '    at node:internal/modules/cjs/loader:1895:10\n' +
+    '    at Object.require.extensions.<computed> [as .ts] (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1621:12)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1465:32)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1282:12)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)',
+  exception: true,
+  date: 'Tue Jul 15 2025 07:34:04 GMT-0700 (Pacific Daylight Time)',
+  process: {
+    pid: 58465,
+    uid: 501,
+    gid: 20,
+    cwd: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms',
+    execPath: '/Users/muwaf/.nvm/versions/node/v22.17.0/bin/node',
+    version: 'v22.17.0',
+    argv: [
+      '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/.bin/ts-node',
+      '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/src/server.ts'
+    ],
+    memoryUsage: {
+      rss: 314638336,
+      heapTotal: 264388608,
+      heapUsed: 240292064,
+      external: 7698601,
+      arrayBuffers: 4868236
+    }
+  },
+  os: {
+    loadavg: [ 1.9609375, 2.0966796875, 2.19482421875 ],
+    uptime: 221686
+  },
+  trace: [
+    {
+      column: 12,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'createTSError',
+      line: 859,
+      method: null,
+      native: false
+    },
+    {
+      column: 19,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'reportTSError',
+      line: 863,
+      method: null,
+      native: false
+    },
+    {
+      column: 36,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'getOutput',
+      line: 1077,
+      method: null,
+      native: false
+    },
+    {
+      column: 41,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Object.compile',
+      line: 1433,
+      method: 'compile',
+      native: false
+    },
+    {
+      column: 30,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Module.m._compile',
+      line: 1617,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'node:internal/modules/cjs/loader',
+      function: null,
+      line: 1895,
+      method: null,
+      native: false
+    },
+    {
+      column: 12,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Object.require.extensions.<computed> [as .ts]',
+      line: 1621,
+      method: 'ts]',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Module.load',
+      line: 1465,
+      method: 'load',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Function._load',
+      line: 1282,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'node:diagnostics_channel',
+      function: 'TracingChannel.traceSync',
+      line: 322,
+      method: 'traceSync',
+      native: false
+    }
+  ],
+  service: 'drest_cms',
+  environment: 'development',
+  timestamp: '2025-07-15 07:34:04'
+}
+{
+  error: [96msrc/middleware/error.middleware.ts[0m:[93m140[0m:[93m3[0m - [91merror[0m[90m TS6133: [0m'next' is declared but its value is never read.
+  
+  [7m140[0m   next: NextFunction
+  [7m   [0m [91m  ~~~~[0m
+  ,
+  level: 'error',
+  message: 'uncaughtException: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    'TSError: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    '    at createTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:859:12)\n' +
+    '    at reportTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:863:19)\n' +
+    '    at getOutput (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1077:36)\n' +
+    '    at Object.compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1433:41)\n' +
+    '    at Module.m._compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1617:30)\n' +
+    '    at node:internal/modules/cjs/loader:1895:10\n' +
+    '    at Object.require.extensions.<computed> [as .ts] (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1621:12)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1465:32)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1282:12)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)',
+  stack: 'TSError: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    '    at createTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:859:12)\n' +
+    '    at reportTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:863:19)\n' +
+    '    at getOutput (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1077:36)\n' +
+    '    at Object.compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1433:41)\n' +
+    '    at Module.m._compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1617:30)\n' +
+    '    at node:internal/modules/cjs/loader:1895:10\n' +
+    '    at Object.require.extensions.<computed> [as .ts] (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1621:12)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1465:32)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1282:12)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)',
+  exception: true,
+  date: 'Tue Jul 15 2025 07:34:07 GMT-0700 (Pacific Daylight Time)',
+  process: {
+    pid: 58497,
+    uid: 501,
+    gid: 20,
+    cwd: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms',
+    execPath: '/Users/muwaf/.nvm/versions/node/v22.17.0/bin/node',
+    version: 'v22.17.0',
+    argv: [
+      '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/.bin/ts-node',
+      '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/src/server.ts'
+    ],
+    memoryUsage: {
+      rss: 309411840,
+      heapTotal: 255475712,
+      heapUsed: 225311792,
+      external: 7708978,
+      arrayBuffers: 4861063
+    }
+  },
+  os: {
+    loadavg: [ 1.9609375, 2.0966796875, 2.19482421875 ],
+    uptime: 221689
+  },
+  trace: [
+    {
+      column: 12,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'createTSError',
+      line: 859,
+      method: null,
+      native: false
+    },
+    {
+      column: 19,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'reportTSError',
+      line: 863,
+      method: null,
+      native: false
+    },
+    {
+      column: 36,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'getOutput',
+      line: 1077,
+      method: null,
+      native: false
+    },
+    {
+      column: 41,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Object.compile',
+      line: 1433,
+      method: 'compile',
+      native: false
+    },
+    {
+      column: 30,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Module.m._compile',
+      line: 1617,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'node:internal/modules/cjs/loader',
+      function: null,
+      line: 1895,
+      method: null,
+      native: false
+    },
+    {
+      column: 12,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Object.require.extensions.<computed> [as .ts]',
+      line: 1621,
+      method: 'ts]',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Module.load',
+      line: 1465,
+      method: 'load',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Function._load',
+      line: 1282,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'node:diagnostics_channel',
+      function: 'TracingChannel.traceSync',
+      line: 322,
+      method: 'traceSync',
+      native: false
+    }
+  ],
+  service: 'drest_cms',
+  environment: 'development',
+  timestamp: '2025-07-15 07:34:07'
+}
+{
+  error: [96msrc/middleware/error.middleware.ts[0m:[93m140[0m:[93m3[0m - [91merror[0m[90m TS6133: [0m'next' is declared but its value is never read.
+  
+  [7m140[0m   next: NextFunction
+  [7m   [0m [91m  ~~~~[0m
+  ,
+  level: 'error',
+  message: 'uncaughtException: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    'TSError: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    '    at createTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:859:12)\n' +
+    '    at reportTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:863:19)\n' +
+    '    at getOutput (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1077:36)\n' +
+    '    at Object.compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1433:41)\n' +
+    '    at Module.m._compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1617:30)\n' +
+    '    at node:internal/modules/cjs/loader:1895:10\n' +
+    '    at Object.require.extensions.<computed> [as .ts] (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1621:12)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1465:32)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1282:12)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)',
+  stack: 'TSError: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    '    at createTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:859:12)\n' +
+    '    at reportTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:863:19)\n' +
+    '    at getOutput (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1077:36)\n' +
+    '    at Object.compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1433:41)\n' +
+    '    at Module.m._compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1617:30)\n' +
+    '    at node:internal/modules/cjs/loader:1895:10\n' +
+    '    at Object.require.extensions.<computed> [as .ts] (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1621:12)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1465:32)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1282:12)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)',
+  exception: true,
+  date: 'Tue Jul 15 2025 07:37:02 GMT-0700 (Pacific Daylight Time)',
+  process: {
+    pid: 59679,
+    uid: 501,
+    gid: 20,
+    cwd: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms',
+    execPath: '/Users/muwaf/.nvm/versions/node/v22.17.0/bin/node',
+    version: 'v22.17.0',
+    argv: [
+      '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/.bin/ts-node',
+      '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/src/server.ts'
+    ],
+    memoryUsage: {
+      rss: 339836928,
+      heapTotal: 262029312,
+      heapUsed: 238737032,
+      external: 7698665,
+      arrayBuffers: 4868300
+    }
+  },
+  os: {
+    loadavg: [ 1.904296875, 2.13134765625, 2.1962890625 ],
+    uptime: 221864
+  },
+  trace: [
+    {
+      column: 12,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'createTSError',
+      line: 859,
+      method: null,
+      native: false
+    },
+    {
+      column: 19,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'reportTSError',
+      line: 863,
+      method: null,
+      native: false
+    },
+    {
+      column: 36,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'getOutput',
+      line: 1077,
+      method: null,
+      native: false
+    },
+    {
+      column: 41,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Object.compile',
+      line: 1433,
+      method: 'compile',
+      native: false
+    },
+    {
+      column: 30,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Module.m._compile',
+      line: 1617,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'node:internal/modules/cjs/loader',
+      function: null,
+      line: 1895,
+      method: null,
+      native: false
+    },
+    {
+      column: 12,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Object.require.extensions.<computed> [as .ts]',
+      line: 1621,
+      method: 'ts]',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Module.load',
+      line: 1465,
+      method: 'load',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Function._load',
+      line: 1282,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'node:diagnostics_channel',
+      function: 'TracingChannel.traceSync',
+      line: 322,
+      method: 'traceSync',
+      native: false
+    }
+  ],
+  service: 'drest_cms',
+  environment: 'development',
+  timestamp: '2025-07-15 07:37:02'
+}
+{
+  error: [96msrc/middleware/error.middleware.ts[0m:[93m140[0m:[93m3[0m - [91merror[0m[90m TS6133: [0m'next' is declared but its value is never read.
+  
+  [7m140[0m   next: NextFunction
+  [7m   [0m [91m  ~~~~[0m
+  ,
+  level: 'error',
+  message: 'uncaughtException: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    'TSError: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    '    at createTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:859:12)\n' +
+    '    at reportTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:863:19)\n' +
+    '    at getOutput (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1077:36)\n' +
+    '    at Object.compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1433:41)\n' +
+    '    at Module.m._compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1617:30)\n' +
+    '    at node:internal/modules/cjs/loader:1895:10\n' +
+    '    at Object.require.extensions.<computed> [as .ts] (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1621:12)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1465:32)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1282:12)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)',
+  stack: 'TSError: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    '    at createTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:859:12)\n' +
+    '    at reportTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:863:19)\n' +
+    '    at getOutput (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1077:36)\n' +
+    '    at Object.compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1433:41)\n' +
+    '    at Module.m._compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1617:30)\n' +
+    '    at node:internal/modules/cjs/loader:1895:10\n' +
+    '    at Object.require.extensions.<computed> [as .ts] (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1621:12)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1465:32)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1282:12)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)',
+  exception: true,
+  date: 'Tue Jul 15 2025 07:39:05 GMT-0700 (Pacific Daylight Time)',
+  process: {
+    pid: 60331,
+    uid: 501,
+    gid: 20,
+    cwd: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms',
+    execPath: '/Users/muwaf/.nvm/versions/node/v22.17.0/bin/node',
+    version: 'v22.17.0',
+    argv: [
+      '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/.bin/ts-node',
+      '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/src/server.ts'
+    ],
+    memoryUsage: {
+      rss: 318586880,
+      heapTotal: 256000000,
+      heapUsed: 223739072,
+      external: 7709025,
+      arrayBuffers: 4861119
+    }
+  },
+  os: {
+    loadavg: [ 2.38671875, 2.1103515625, 2.16650390625 ],
+    uptime: 221987
+  },
+  trace: [
+    {
+      column: 12,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'createTSError',
+      line: 859,
+      method: null,
+      native: false
+    },
+    {
+      column: 19,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'reportTSError',
+      line: 863,
+      method: null,
+      native: false
+    },
+    {
+      column: 36,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'getOutput',
+      line: 1077,
+      method: null,
+      native: false
+    },
+    {
+      column: 41,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Object.compile',
+      line: 1433,
+      method: 'compile',
+      native: false
+    },
+    {
+      column: 30,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Module.m._compile',
+      line: 1617,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'node:internal/modules/cjs/loader',
+      function: null,
+      line: 1895,
+      method: null,
+      native: false
+    },
+    {
+      column: 12,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Object.require.extensions.<computed> [as .ts]',
+      line: 1621,
+      method: 'ts]',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Module.load',
+      line: 1465,
+      method: 'load',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Function._load',
+      line: 1282,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'node:diagnostics_channel',
+      function: 'TracingChannel.traceSync',
+      line: 322,
+      method: 'traceSync',
+      native: false
+    }
+  ],
+  service: 'drest_cms',
+  environment: 'development',
+  timestamp: '2025-07-15 07:39:05'
+}
+{
+  error: [96msrc/middleware/error.middleware.ts[0m:[93m140[0m:[93m3[0m - [91merror[0m[90m TS6133: [0m'next' is declared but its value is never read.
+  
+  [7m140[0m   next: NextFunction
+  [7m   [0m [91m  ~~~~[0m
+  ,
+  level: 'error',
+  message: 'uncaughtException: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    'TSError: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    '    at createTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:859:12)\n' +
+    '    at reportTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:863:19)\n' +
+    '    at getOutput (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1077:36)\n' +
+    '    at Object.compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1433:41)\n' +
+    '    at Module.m._compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1617:30)\n' +
+    '    at node:internal/modules/cjs/loader:1895:10\n' +
+    '    at Object.require.extensions.<computed> [as .ts] (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1621:12)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1465:32)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1282:12)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)',
+  stack: 'TSError: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    '    at createTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:859:12)\n' +
+    '    at reportTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:863:19)\n' +
+    '    at getOutput (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1077:36)\n' +
+    '    at Object.compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1433:41)\n' +
+    '    at Module.m._compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1617:30)\n' +
+    '    at node:internal/modules/cjs/loader:1895:10\n' +
+    '    at Object.require.extensions.<computed> [as .ts] (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1621:12)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1465:32)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1282:12)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)',
+  exception: true,
+  date: 'Tue Jul 15 2025 07:41:57 GMT-0700 (Pacific Daylight Time)',
+  process: {
+    pid: 61105,
+    uid: 501,
+    gid: 20,
+    cwd: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms',
+    execPath: '/Users/muwaf/.nvm/versions/node/v22.17.0/bin/node',
+    version: 'v22.17.0',
+    argv: [
+      '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/.bin/ts-node',
+      '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/src/server.ts'
+    ],
+    memoryUsage: {
+      rss: 297353216,
+      heapTotal: 255475712,
+      heapUsed: 221262560,
+      external: 7698681,
+      arrayBuffers: 4861183
+    }
+  },
+  os: {
+    loadavg: [ 2.30615234375, 2.056640625, 2.12109375 ],
+    uptime: 222159
+  },
+  trace: [
+    {
+      column: 12,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'createTSError',
+      line: 859,
+      method: null,
+      native: false
+    },
+    {
+      column: 19,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'reportTSError',
+      line: 863,
+      method: null,
+      native: false
+    },
+    {
+      column: 36,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'getOutput',
+      line: 1077,
+      method: null,
+      native: false
+    },
+    {
+      column: 41,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Object.compile',
+      line: 1433,
+      method: 'compile',
+      native: false
+    },
+    {
+      column: 30,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Module.m._compile',
+      line: 1617,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'node:internal/modules/cjs/loader',
+      function: null,
+      line: 1895,
+      method: null,
+      native: false
+    },
+    {
+      column: 12,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Object.require.extensions.<computed> [as .ts]',
+      line: 1621,
+      method: 'ts]',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Module.load',
+      line: 1465,
+      method: 'load',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Function._load',
+      line: 1282,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'node:diagnostics_channel',
+      function: 'TracingChannel.traceSync',
+      line: 322,
+      method: 'traceSync',
+      native: false
+    }
+  ],
+  service: 'drest_cms',
+  environment: 'development',
+  timestamp: '2025-07-15 07:41:57'
+}
+{
+  error: [96msrc/middleware/error.middleware.ts[0m:[93m140[0m:[93m3[0m - [91merror[0m[90m TS6133: [0m'next' is declared but its value is never read.
+  
+  [7m140[0m   next: NextFunction
+  [7m   [0m [91m  ~~~~[0m
+  ,
+  level: 'error',
+  message: 'uncaughtException: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    'TSError: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    '    at createTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:859:12)\n' +
+    '    at reportTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:863:19)\n' +
+    '    at getOutput (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1077:36)\n' +
+    '    at Object.compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1433:41)\n' +
+    '    at Module.m._compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1617:30)\n' +
+    '    at node:internal/modules/cjs/loader:1895:10\n' +
+    '    at Object.require.extensions.<computed> [as .ts] (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1621:12)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1465:32)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1282:12)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)',
+  stack: 'TSError: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    '    at createTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:859:12)\n' +
+    '    at reportTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:863:19)\n' +
+    '    at getOutput (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1077:36)\n' +
+    '    at Object.compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1433:41)\n' +
+    '    at Module.m._compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1617:30)\n' +
+    '    at node:internal/modules/cjs/loader:1895:10\n' +
+    '    at Object.require.extensions.<computed> [as .ts] (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1621:12)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1465:32)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1282:12)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)',
+  exception: true,
+  date: 'Tue Jul 15 2025 07:43:49 GMT-0700 (Pacific Daylight Time)',
+  process: {
+    pid: 61616,
+    uid: 501,
+    gid: 20,
+    cwd: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms',
+    execPath: '/Users/muwaf/.nvm/versions/node/v22.17.0/bin/node',
+    version: 'v22.17.0',
+    argv: [
+      '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/.bin/ts-node',
+      '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/src/server.ts'
+    ],
+    memoryUsage: {
+      rss: 337608704,
+      heapTotal: 262029312,
+      heapUsed: 238197256,
+      external: 7698569,
+      arrayBuffers: 4868204
+    }
+  },
+  os: {
+    loadavg: [ 2.33740234375, 2.1904296875, 2.16552734375 ],
+    uptime: 222271
+  },
+  trace: [
+    {
+      column: 12,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'createTSError',
+      line: 859,
+      method: null,
+      native: false
+    },
+    {
+      column: 19,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'reportTSError',
+      line: 863,
+      method: null,
+      native: false
+    },
+    {
+      column: 36,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'getOutput',
+      line: 1077,
+      method: null,
+      native: false
+    },
+    {
+      column: 41,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Object.compile',
+      line: 1433,
+      method: 'compile',
+      native: false
+    },
+    {
+      column: 30,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Module.m._compile',
+      line: 1617,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'node:internal/modules/cjs/loader',
+      function: null,
+      line: 1895,
+      method: null,
+      native: false
+    },
+    {
+      column: 12,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Object.require.extensions.<computed> [as .ts]',
+      line: 1621,
+      method: 'ts]',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Module.load',
+      line: 1465,
+      method: 'load',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Function._load',
+      line: 1282,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'node:diagnostics_channel',
+      function: 'TracingChannel.traceSync',
+      line: 322,
+      method: 'traceSync',
+      native: false
+    }
+  ],
+  service: 'drest_cms',
+  environment: 'development',
+  timestamp: '2025-07-15 07:43:49'
+}
+{
+  error: [96msrc/middleware/error.middleware.ts[0m:[93m140[0m:[93m3[0m - [91merror[0m[90m TS6133: [0m'next' is declared but its value is never read.
+  
+  [7m140[0m   next: NextFunction
+  [7m   [0m [91m  ~~~~[0m
+  ,
+  level: 'error',
+  message: 'uncaughtException: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    'TSError: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    '    at createTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:859:12)\n' +
+    '    at reportTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:863:19)\n' +
+    '    at getOutput (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1077:36)\n' +
+    '    at Object.compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1433:41)\n' +
+    '    at Module.m._compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1617:30)\n' +
+    '    at node:internal/modules/cjs/loader:1895:10\n' +
+    '    at Object.require.extensions.<computed> [as .ts] (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1621:12)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1465:32)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1282:12)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)',
+  stack: 'TSError: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    '    at createTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:859:12)\n' +
+    '    at reportTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:863:19)\n' +
+    '    at getOutput (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1077:36)\n' +
+    '    at Object.compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1433:41)\n' +
+    '    at Module.m._compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1617:30)\n' +
+    '    at node:internal/modules/cjs/loader:1895:10\n' +
+    '    at Object.require.extensions.<computed> [as .ts] (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1621:12)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1465:32)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1282:12)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)',
+  exception: true,
+  date: 'Tue Jul 15 2025 07:43:58 GMT-0700 (Pacific Daylight Time)',
+  process: {
+    pid: 61684,
+    uid: 501,
+    gid: 20,
+    cwd: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms',
+    execPath: '/Users/muwaf/.nvm/versions/node/v22.17.0/bin/node',
+    version: 'v22.17.0',
+    argv: [
+      '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/.bin/ts-node',
+      '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/src/server.ts'
+    ],
+    memoryUsage: {
+      rss: 318472192,
+      heapTotal: 255475712,
+      heapUsed: 224675824,
+      external: 7708961,
+      arrayBuffers: 4861055
+    }
+  },
+  os: {
+    loadavg: [ 2.365234375, 2.2001953125, 2.16943359375 ],
+    uptime: 222280
+  },
+  trace: [
+    {
+      column: 12,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'createTSError',
+      line: 859,
+      method: null,
+      native: false
+    },
+    {
+      column: 19,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'reportTSError',
+      line: 863,
+      method: null,
+      native: false
+    },
+    {
+      column: 36,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'getOutput',
+      line: 1077,
+      method: null,
+      native: false
+    },
+    {
+      column: 41,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Object.compile',
+      line: 1433,
+      method: 'compile',
+      native: false
+    },
+    {
+      column: 30,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Module.m._compile',
+      line: 1617,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'node:internal/modules/cjs/loader',
+      function: null,
+      line: 1895,
+      method: null,
+      native: false
+    },
+    {
+      column: 12,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Object.require.extensions.<computed> [as .ts]',
+      line: 1621,
+      method: 'ts]',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Module.load',
+      line: 1465,
+      method: 'load',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Function._load',
+      line: 1282,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'node:diagnostics_channel',
+      function: 'TracingChannel.traceSync',
+      line: 322,
+      method: 'traceSync',
+      native: false
+    }
+  ],
+  service: 'drest_cms',
+  environment: 'development',
+  timestamp: '2025-07-15 07:43:58'
+}
+{
+  error: [96msrc/middleware/error.middleware.ts[0m:[93m140[0m:[93m3[0m - [91merror[0m[90m TS6133: [0m'next' is declared but its value is never read.
+  
+  [7m140[0m   next: NextFunction
+  [7m   [0m [91m  ~~~~[0m
+  ,
+  level: 'error',
+  message: 'uncaughtException: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    'TSError: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    '    at createTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:859:12)\n' +
+    '    at reportTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:863:19)\n' +
+    '    at getOutput (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1077:36)\n' +
+    '    at Object.compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1433:41)\n' +
+    '    at Module.m._compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1617:30)\n' +
+    '    at node:internal/modules/cjs/loader:1895:10\n' +
+    '    at Object.require.extensions.<computed> [as .ts] (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1621:12)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1465:32)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1282:12)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)',
+  stack: 'TSError: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    '    at createTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:859:12)\n' +
+    '    at reportTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:863:19)\n' +
+    '    at getOutput (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1077:36)\n' +
+    '    at Object.compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1433:41)\n' +
+    '    at Module.m._compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1617:30)\n' +
+    '    at node:internal/modules/cjs/loader:1895:10\n' +
+    '    at Object.require.extensions.<computed> [as .ts] (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1621:12)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1465:32)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1282:12)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)',
+  exception: true,
+  date: 'Tue Jul 15 2025 07:44:02 GMT-0700 (Pacific Daylight Time)',
+  process: {
+    pid: 61738,
+    uid: 501,
+    gid: 20,
+    cwd: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms',
+    execPath: '/Users/muwaf/.nvm/versions/node/v22.17.0/bin/node',
+    version: 'v22.17.0',
+    argv: [
+      '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/.bin/ts-node',
+      '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/src/server.ts'
+    ],
+    memoryUsage: {
+      rss: 345309184,
+      heapTotal: 264388608,
+      heapUsed: 240274784,
+      external: 7698569,
+      arrayBuffers: 4868204
+    }
+  },
+  os: {
+    loadavg: [ 2.416015625, 2.21337890625, 2.173828125 ],
+    uptime: 222284
+  },
+  trace: [
+    {
+      column: 12,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'createTSError',
+      line: 859,
+      method: null,
+      native: false
+    },
+    {
+      column: 19,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'reportTSError',
+      line: 863,
+      method: null,
+      native: false
+    },
+    {
+      column: 36,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'getOutput',
+      line: 1077,
+      method: null,
+      native: false
+    },
+    {
+      column: 41,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Object.compile',
+      line: 1433,
+      method: 'compile',
+      native: false
+    },
+    {
+      column: 30,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Module.m._compile',
+      line: 1617,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'node:internal/modules/cjs/loader',
+      function: null,
+      line: 1895,
+      method: null,
+      native: false
+    },
+    {
+      column: 12,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Object.require.extensions.<computed> [as .ts]',
+      line: 1621,
+      method: 'ts]',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Module.load',
+      line: 1465,
+      method: 'load',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Function._load',
+      line: 1282,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'node:diagnostics_channel',
+      function: 'TracingChannel.traceSync',
+      line: 322,
+      method: 'traceSync',
+      native: false
+    }
+  ],
+  service: 'drest_cms',
+  environment: 'development',
+  timestamp: '2025-07-15 07:44:02'
+}
+{
+  error: [96msrc/middleware/error.middleware.ts[0m:[93m140[0m:[93m3[0m - [91merror[0m[90m TS6133: [0m'next' is declared but its value is never read.
+  
+  [7m140[0m   next: NextFunction
+  [7m   [0m [91m  ~~~~[0m
+  ,
+  level: 'error',
+  message: 'uncaughtException: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    'TSError: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    '    at createTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:859:12)\n' +
+    '    at reportTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:863:19)\n' +
+    '    at getOutput (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1077:36)\n' +
+    '    at Object.compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1433:41)\n' +
+    '    at Module.m._compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1617:30)\n' +
+    '    at node:internal/modules/cjs/loader:1895:10\n' +
+    '    at Object.require.extensions.<computed> [as .ts] (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1621:12)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1465:32)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1282:12)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)',
+  stack: 'TSError: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    '    at createTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:859:12)\n' +
+    '    at reportTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:863:19)\n' +
+    '    at getOutput (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1077:36)\n' +
+    '    at Object.compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1433:41)\n' +
+    '    at Module.m._compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1617:30)\n' +
+    '    at node:internal/modules/cjs/loader:1895:10\n' +
+    '    at Object.require.extensions.<computed> [as .ts] (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1621:12)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1465:32)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1282:12)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)',
+  exception: true,
+  date: 'Tue Jul 15 2025 07:44:11 GMT-0700 (Pacific Daylight Time)',
+  process: {
+    pid: 61797,
+    uid: 501,
+    gid: 20,
+    cwd: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms',
+    execPath: '/Users/muwaf/.nvm/versions/node/v22.17.0/bin/node',
+    version: 'v22.17.0',
+    argv: [
+      '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/.bin/ts-node',
+      '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/src/server.ts'
+    ],
+    memoryUsage: {
+      rss: 339427328,
+      heapTotal: 263602176,
+      heapUsed: 227625504,
+      external: 7698545,
+      arrayBuffers: 4861047
+    }
+  },
+  os: {
+    loadavg: [ 2.35791015625, 2.2060546875, 2.17138671875 ],
+    uptime: 222293
+  },
+  trace: [
+    {
+      column: 12,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'createTSError',
+      line: 859,
+      method: null,
+      native: false
+    },
+    {
+      column: 19,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'reportTSError',
+      line: 863,
+      method: null,
+      native: false
+    },
+    {
+      column: 36,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'getOutput',
+      line: 1077,
+      method: null,
+      native: false
+    },
+    {
+      column: 41,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Object.compile',
+      line: 1433,
+      method: 'compile',
+      native: false
+    },
+    {
+      column: 30,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Module.m._compile',
+      line: 1617,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'node:internal/modules/cjs/loader',
+      function: null,
+      line: 1895,
+      method: null,
+      native: false
+    },
+    {
+      column: 12,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Object.require.extensions.<computed> [as .ts]',
+      line: 1621,
+      method: 'ts]',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Module.load',
+      line: 1465,
+      method: 'load',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Function._load',
+      line: 1282,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'node:diagnostics_channel',
+      function: 'TracingChannel.traceSync',
+      line: 322,
+      method: 'traceSync',
+      native: false
+    }
+  ],
+  service: 'drest_cms',
+  environment: 'development',
+  timestamp: '2025-07-15 07:44:11'
+}
+{
+  error: [96msrc/middleware/error.middleware.ts[0m:[93m140[0m:[93m3[0m - [91merror[0m[90m TS6133: [0m'next' is declared but its value is never read.
+  
+  [7m140[0m   next: NextFunction
+  [7m   [0m [91m  ~~~~[0m
+  ,
+  level: 'error',
+  message: 'uncaughtException: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    'TSError: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    '    at createTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:859:12)\n' +
+    '    at reportTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:863:19)\n' +
+    '    at getOutput (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1077:36)\n' +
+    '    at Object.compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1433:41)\n' +
+    '    at Module.m._compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1617:30)\n' +
+    '    at node:internal/modules/cjs/loader:1895:10\n' +
+    '    at Object.require.extensions.<computed> [as .ts] (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1621:12)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1465:32)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1282:12)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)',
+  stack: 'TSError: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    '    at createTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:859:12)\n' +
+    '    at reportTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:863:19)\n' +
+    '    at getOutput (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1077:36)\n' +
+    '    at Object.compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1433:41)\n' +
+    '    at Module.m._compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1617:30)\n' +
+    '    at node:internal/modules/cjs/loader:1895:10\n' +
+    '    at Object.require.extensions.<computed> [as .ts] (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1621:12)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1465:32)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1282:12)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)',
+  exception: true,
+  date: 'Tue Jul 15 2025 07:44:17 GMT-0700 (Pacific Daylight Time)',
+  process: {
+    pid: 61861,
+    uid: 501,
+    gid: 20,
+    cwd: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms',
+    execPath: '/Users/muwaf/.nvm/versions/node/v22.17.0/bin/node',
+    version: 'v22.17.0',
+    argv: [
+      '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/.bin/ts-node',
+      '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/src/server.ts'
+    ],
+    memoryUsage: {
+      rss: 333414400,
+      heapTotal: 255737856,
+      heapUsed: 224973184,
+      external: 7708945,
+      arrayBuffers: 4861039
+    }
+  },
+  os: {
+    loadavg: [ 2.3291015625, 2.2021484375, 2.169921875 ],
+    uptime: 222299
+  },
+  trace: [
+    {
+      column: 12,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'createTSError',
+      line: 859,
+      method: null,
+      native: false
+    },
+    {
+      column: 19,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'reportTSError',
+      line: 863,
+      method: null,
+      native: false
+    },
+    {
+      column: 36,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'getOutput',
+      line: 1077,
+      method: null,
+      native: false
+    },
+    {
+      column: 41,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Object.compile',
+      line: 1433,
+      method: 'compile',
+      native: false
+    },
+    {
+      column: 30,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Module.m._compile',
+      line: 1617,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'node:internal/modules/cjs/loader',
+      function: null,
+      line: 1895,
+      method: null,
+      native: false
+    },
+    {
+      column: 12,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Object.require.extensions.<computed> [as .ts]',
+      line: 1621,
+      method: 'ts]',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Module.load',
+      line: 1465,
+      method: 'load',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Function._load',
+      line: 1282,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'node:diagnostics_channel',
+      function: 'TracingChannel.traceSync',
+      line: 322,
+      method: 'traceSync',
+      native: false
+    }
+  ],
+  service: 'drest_cms',
+  environment: 'development',
+  timestamp: '2025-07-15 07:44:17'
+}
+{
+  error: [96msrc/middleware/error.middleware.ts[0m:[93m140[0m:[93m3[0m - [91merror[0m[90m TS6133: [0m'next' is declared but its value is never read.
+  
+  [7m140[0m   next: NextFunction
+  [7m   [0m [91m  ~~~~[0m
+  ,
+  level: 'error',
+  message: 'uncaughtException: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    'TSError: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    '    at createTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:859:12)\n' +
+    '    at reportTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:863:19)\n' +
+    '    at getOutput (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1077:36)\n' +
+    '    at Object.compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1433:41)\n' +
+    '    at Module.m._compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1617:30)\n' +
+    '    at node:internal/modules/cjs/loader:1895:10\n' +
+    '    at Object.require.extensions.<computed> [as .ts] (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1621:12)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1465:32)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1282:12)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)',
+  stack: 'TSError: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    '    at createTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:859:12)\n' +
+    '    at reportTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:863:19)\n' +
+    '    at getOutput (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1077:36)\n' +
+    '    at Object.compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1433:41)\n' +
+    '    at Module.m._compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1617:30)\n' +
+    '    at node:internal/modules/cjs/loader:1895:10\n' +
+    '    at Object.require.extensions.<computed> [as .ts] (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1621:12)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1465:32)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1282:12)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)',
+  exception: true,
+  date: 'Tue Jul 15 2025 07:44:20 GMT-0700 (Pacific Daylight Time)',
+  process: {
+    pid: 61901,
+    uid: 501,
+    gid: 20,
+    cwd: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms',
+    execPath: '/Users/muwaf/.nvm/versions/node/v22.17.0/bin/node',
+    version: 'v22.17.0',
+    argv: [
+      '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/.bin/ts-node',
+      '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/src/server.ts'
+    ],
+    memoryUsage: {
+      rss: 315719680,
+      heapTotal: 262291456,
+      heapUsed: 238651176,
+      external: 7698545,
+      arrayBuffers: 4868180
+    }
+  },
+  os: {
+    loadavg: [ 2.3291015625, 2.2021484375, 2.169921875 ],
+    uptime: 222302
+  },
+  trace: [
+    {
+      column: 12,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'createTSError',
+      line: 859,
+      method: null,
+      native: false
+    },
+    {
+      column: 19,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'reportTSError',
+      line: 863,
+      method: null,
+      native: false
+    },
+    {
+      column: 36,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'getOutput',
+      line: 1077,
+      method: null,
+      native: false
+    },
+    {
+      column: 41,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Object.compile',
+      line: 1433,
+      method: 'compile',
+      native: false
+    },
+    {
+      column: 30,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Module.m._compile',
+      line: 1617,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'node:internal/modules/cjs/loader',
+      function: null,
+      line: 1895,
+      method: null,
+      native: false
+    },
+    {
+      column: 12,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Object.require.extensions.<computed> [as .ts]',
+      line: 1621,
+      method: 'ts]',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Module.load',
+      line: 1465,
+      method: 'load',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Function._load',
+      line: 1282,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'node:diagnostics_channel',
+      function: 'TracingChannel.traceSync',
+      line: 322,
+      method: 'traceSync',
+      native: false
+    }
+  ],
+  service: 'drest_cms',
+  environment: 'development',
+  timestamp: '2025-07-15 07:44:20'
+}
+{
+  error: [96msrc/middleware/error.middleware.ts[0m:[93m140[0m:[93m3[0m - [91merror[0m[90m TS6133: [0m'next' is declared but its value is never read.
+  
+  [7m140[0m   next: NextFunction
+  [7m   [0m [91m  ~~~~[0m
+  ,
+  level: 'error',
+  message: 'uncaughtException: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    'TSError: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    '    at createTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:859:12)\n' +
+    '    at reportTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:863:19)\n' +
+    '    at getOutput (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1077:36)\n' +
+    '    at Object.compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1433:41)\n' +
+    '    at Module.m._compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1617:30)\n' +
+    '    at node:internal/modules/cjs/loader:1895:10\n' +
+    '    at Object.require.extensions.<computed> [as .ts] (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1621:12)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1465:32)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1282:12)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)',
+  stack: 'TSError: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    '    at createTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:859:12)\n' +
+    '    at reportTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:863:19)\n' +
+    '    at getOutput (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1077:36)\n' +
+    '    at Object.compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1433:41)\n' +
+    '    at Module.m._compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1617:30)\n' +
+    '    at node:internal/modules/cjs/loader:1895:10\n' +
+    '    at Object.require.extensions.<computed> [as .ts] (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1621:12)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1465:32)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1282:12)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)',
+  exception: true,
+  date: 'Tue Jul 15 2025 07:46:03 GMT-0700 (Pacific Daylight Time)',
+  process: {
+    pid: 62432,
+    uid: 501,
+    gid: 20,
+    cwd: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms',
+    execPath: '/Users/muwaf/.nvm/versions/node/v22.17.0/bin/node',
+    version: 'v22.17.0',
+    argv: [
+      '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/.bin/ts-node',
+      '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/src/server.ts'
+    ],
+    memoryUsage: {
+      rss: 305152000,
+      heapTotal: 256000000,
+      heapUsed: 224907272,
+      external: 7708857,
+      arrayBuffers: 4860951
+    }
+  },
+  os: {
+    loadavg: [ 1.86669921875, 2.0576171875, 2.11279296875 ],
+    uptime: 222405
+  },
+  trace: [
+    {
+      column: 12,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'createTSError',
+      line: 859,
+      method: null,
+      native: false
+    },
+    {
+      column: 19,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'reportTSError',
+      line: 863,
+      method: null,
+      native: false
+    },
+    {
+      column: 36,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'getOutput',
+      line: 1077,
+      method: null,
+      native: false
+    },
+    {
+      column: 41,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Object.compile',
+      line: 1433,
+      method: 'compile',
+      native: false
+    },
+    {
+      column: 30,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Module.m._compile',
+      line: 1617,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'node:internal/modules/cjs/loader',
+      function: null,
+      line: 1895,
+      method: null,
+      native: false
+    },
+    {
+      column: 12,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Object.require.extensions.<computed> [as .ts]',
+      line: 1621,
+      method: 'ts]',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Module.load',
+      line: 1465,
+      method: 'load',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Function._load',
+      line: 1282,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'node:diagnostics_channel',
+      function: 'TracingChannel.traceSync',
+      line: 322,
+      method: 'traceSync',
+      native: false
+    }
+  ],
+  service: 'drest_cms',
+  environment: 'development',
+  timestamp: '2025-07-15 07:46:03'
+}
+{
+  error: [96msrc/middleware/error.middleware.ts[0m:[93m140[0m:[93m3[0m - [91merror[0m[90m TS6133: [0m'next' is declared but its value is never read.
+  
+  [7m140[0m   next: NextFunction
+  [7m   [0m [91m  ~~~~[0m
+  ,
+  level: 'error',
+  message: 'uncaughtException: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    'TSError: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    '    at createTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:859:12)\n' +
+    '    at reportTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:863:19)\n' +
+    '    at getOutput (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1077:36)\n' +
+    '    at Object.compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1433:41)\n' +
+    '    at Module.m._compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1617:30)\n' +
+    '    at node:internal/modules/cjs/loader:1895:10\n' +
+    '    at Object.require.extensions.<computed> [as .ts] (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1621:12)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1465:32)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1282:12)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)',
+  stack: 'TSError: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    '    at createTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:859:12)\n' +
+    '    at reportTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:863:19)\n' +
+    '    at getOutput (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1077:36)\n' +
+    '    at Object.compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1433:41)\n' +
+    '    at Module.m._compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1617:30)\n' +
+    '    at node:internal/modules/cjs/loader:1895:10\n' +
+    '    at Object.require.extensions.<computed> [as .ts] (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1621:12)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1465:32)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1282:12)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)',
+  exception: true,
+  date: 'Tue Jul 15 2025 07:46:28 GMT-0700 (Pacific Daylight Time)',
+  process: {
+    pid: 62650,
+    uid: 501,
+    gid: 20,
+    cwd: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms',
+    execPath: '/Users/muwaf/.nvm/versions/node/v22.17.0/bin/node',
+    version: 'v22.17.0',
+    argv: [
+      '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/.bin/ts-node',
+      '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/src/server.ts'
+    ],
+    memoryUsage: {
+      rss: 363069440,
+      heapTotal: 255737856,
+      heapUsed: 225199312,
+      external: 7708785,
+      arrayBuffers: 4860879
+    }
+  },
+  os: {
+    loadavg: [ 1.89013671875, 2.0380859375, 2.10205078125 ],
+    uptime: 222430
+  },
+  trace: [
+    {
+      column: 12,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'createTSError',
+      line: 859,
+      method: null,
+      native: false
+    },
+    {
+      column: 19,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'reportTSError',
+      line: 863,
+      method: null,
+      native: false
+    },
+    {
+      column: 36,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'getOutput',
+      line: 1077,
+      method: null,
+      native: false
+    },
+    {
+      column: 41,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Object.compile',
+      line: 1433,
+      method: 'compile',
+      native: false
+    },
+    {
+      column: 30,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Module.m._compile',
+      line: 1617,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'node:internal/modules/cjs/loader',
+      function: null,
+      line: 1895,
+      method: null,
+      native: false
+    },
+    {
+      column: 12,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Object.require.extensions.<computed> [as .ts]',
+      line: 1621,
+      method: 'ts]',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Module.load',
+      line: 1465,
+      method: 'load',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Function._load',
+      line: 1282,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'node:diagnostics_channel',
+      function: 'TracingChannel.traceSync',
+      line: 322,
+      method: 'traceSync',
+      native: false
+    }
+  ],
+  service: 'drest_cms',
+  environment: 'development',
+  timestamp: '2025-07-15 07:46:28'
+}
+{
+  error: [96msrc/middleware/error.middleware.ts[0m:[93m140[0m:[93m3[0m - [91merror[0m[90m TS6133: [0m'next' is declared but its value is never read.
+  
+  [7m140[0m   next: NextFunction
+  [7m   [0m [91m  ~~~~[0m
+  ,
+  level: 'error',
+  message: 'uncaughtException: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    'TSError: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    '    at createTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:859:12)\n' +
+    '    at reportTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:863:19)\n' +
+    '    at getOutput (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1077:36)\n' +
+    '    at Object.compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1433:41)\n' +
+    '    at Module.m._compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1617:30)\n' +
+    '    at node:internal/modules/cjs/loader:1895:10\n' +
+    '    at Object.require.extensions.<computed> [as .ts] (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1621:12)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1465:32)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1282:12)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)',
+  stack: 'TSError: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/middleware/error.middleware.ts\x1B[0m:\x1B[93m140\x1B[0m:\x1B[93m3\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'next' is declared but its value is never read.\n" +
+    '\n' +
+    '\x1B[7m140\x1B[0m   next: NextFunction\n' +
+    '\x1B[7m   \x1B[0m \x1B[91m  ~~~~\x1B[0m\n' +
+    '\n' +
+    '    at createTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:859:12)\n' +
+    '    at reportTSError (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:863:19)\n' +
+    '    at getOutput (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1077:36)\n' +
+    '    at Object.compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1433:41)\n' +
+    '    at Module.m._compile (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1617:30)\n' +
+    '    at node:internal/modules/cjs/loader:1895:10\n' +
+    '    at Object.require.extensions.<computed> [as .ts] (/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts:1621:12)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1465:32)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1282:12)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)',
+  exception: true,
+  date: 'Tue Jul 15 2025 07:48:25 GMT-0700 (Pacific Daylight Time)',
+  process: {
+    pid: 63329,
+    uid: 501,
+    gid: 20,
+    cwd: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms',
+    execPath: '/Users/muwaf/.nvm/versions/node/v22.17.0/bin/node',
+    version: 'v22.17.0',
+    argv: [
+      '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/.bin/ts-node',
+      '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/src/server.ts'
+    ],
+    memoryUsage: {
+      rss: 323190784,
+      heapTotal: 255475712,
+      heapUsed: 225507656,
+      external: 7709707,
+      arrayBuffers: 4861223
+    }
+  },
+  os: {
+    loadavg: [ 2.15185546875, 2.0009765625, 2.07080078125 ],
+    uptime: 222547
+  },
+  trace: [
+    {
+      column: 12,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'createTSError',
+      line: 859,
+      method: null,
+      native: false
+    },
+    {
+      column: 19,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'reportTSError',
+      line: 863,
+      method: null,
+      native: false
+    },
+    {
+      column: 36,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'getOutput',
+      line: 1077,
+      method: null,
+      native: false
+    },
+    {
+      column: 41,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Object.compile',
+      line: 1433,
+      method: 'compile',
+      native: false
+    },
+    {
+      column: 30,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Module.m._compile',
+      line: 1617,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'node:internal/modules/cjs/loader',
+      function: null,
+      line: 1895,
+      method: null,
+      native: false
+    },
+    {
+      column: 12,
+      file: '/Users/muwaf/Desktop/muwaffaq/projects/drest_cms/node_modules/ts-node/src/index.ts',
+      function: 'Object.require.extensions.<computed> [as .ts]',
+      line: 1621,
+      method: 'ts]',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Module.load',
+      line: 1465,
+      method: 'load',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Function._load',
+      line: 1282,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'node:diagnostics_channel',
+      function: 'TracingChannel.traceSync',
+      line: 322,
+      method: 'traceSync',
+      native: false
+    }
+  ],
+  service: 'drest_cms',
+  environment: 'development',
+  timestamp: '2025-07-15 07:48:25'
+}

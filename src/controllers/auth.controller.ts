@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import { AuthService } from '@/services/auth.service';
-import { generateToken, generateRefreshToken } from '@/middleware/auth.middleware';
-import { AuthenticationError, ValidationError } from '@/middleware/error.middleware';
-import { logSecurityEvent, logAudit } from '@/utils/logger';
-import { asyncHandler } from '@/middleware/error.middleware';
+import { AuthService } from '../services/auth.service';
+import { generateToken, generateRefreshToken } from '../middleware/auth.middleware';
+import { AuthenticationError, ValidationError } from '../middleware/error.middleware';
+import { logSecurityEvent, logAudit } from '../utils/logger';
+import { asyncHandler } from '../middleware/error.middleware';
 
 export class AuthController {
   private authService: AuthService;

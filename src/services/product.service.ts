@@ -1,8 +1,8 @@
 import { Prisma } from '@prisma/client';
-import { prisma } from '@/config/database';
-import { NotFoundError, ValidationError, ConflictError } from '@/middleware/error.middleware';
-import { generateSlug } from '@/utils/slug';
-import { logger } from '@/utils/logger';
+import { prisma } from '../config/database';
+import { NotFoundError, ValidationError, ConflictError } from '../middleware/error.middleware';
+import { generateSlug } from '../utils/slug';
+import { logger } from '../utils/logger';
 import csv from 'csv-parser';
 import { Readable } from 'stream';
 

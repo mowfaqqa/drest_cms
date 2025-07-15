@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
-import { prisma } from '@/config/database';
-import { AuthenticationError, AuthorizationError } from '@/middleware/error.middleware';
-import { logSecurityEvent } from '@/utils/logger';
+import { prisma } from '../config/database';
+import { AuthenticationError, AuthorizationError } from '../middleware/error.middleware';
+import { logSecurityEvent } from '../utils/logger';
 import { AdminRole } from '@prisma/client';
 
 // Extend Request interface to include user
@@ -63,7 +63,7 @@ const verifyToken = (token: string): JWTPayload => {
 // Main authentication middleware
 export const authMiddleware = async (
   req: Request,
-  res: Response,
+  _res: any,
   next: NextFunction
 ): Promise<void> => {
   try {
@@ -132,7 +132,7 @@ export const authMiddleware = async (
 // Optional authentication middleware (doesn't throw if no token)
 export const optionalAuthMiddleware = async (
   req: Request,
-  res: Response,
+  _res: Response,
   next: NextFunction
 ): Promise<void> => {
   try {
@@ -170,7 +170,7 @@ export const optionalAuthMiddleware = async (
 
 // Role-based authorization middleware
 export const requireRole = (...roles: AdminRole[]) => {
-  return (req: Request, res: Response, next: NextFunction): void => {
+  return (req: Request, _res: Response, next: NextFunction): void => {
     if (!req.user) {
       throw new AuthenticationError('Authentication required');
     }
@@ -192,7 +192,7 @@ export const requireRole = (...roles: AdminRole[]) => {
 
 // Permission-based authorization middleware
 export const requirePermission = (permission: string) => {
-  return (req: Request, res: Response, next: NextFunction): void => {
+  return (req: Request, _res: Response, next: NextFunction): void => {
     if (!req.user) {
       throw new AuthenticationError('Authentication required');
     }
@@ -221,7 +221,7 @@ export const requirePermission = (permission: string) => {
 
 // Resource ownership middleware
 export const requireOwnership = (resourceIdParam: string = 'id') => {
-  return async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  return async (req: Request, _res: Response, next: NextFunction): Promise<void> => {
     try {
       if (!req.user) {
         throw new AuthenticationError('Authentication required');

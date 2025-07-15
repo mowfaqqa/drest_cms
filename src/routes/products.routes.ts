@@ -1,9 +1,9 @@
 import { Router } from 'express';
-import { ProductsController } from '@/controllers/products.controller';
-import { requireRole, requirePermission } from '@/middleware/auth.middleware';
-import { validateRequest } from '@/middleware/validation.middleware';
-import { uploadMiddleware } from '@/middleware/upload.middleware';
-import { productValidators } from '@/validators/product.validator';
+import { ProductsController } from '../controllers/products.controller';
+import { requireRole, requirePermission } from '../middleware/auth.middleware';
+import { validateRequest } from '../middleware/validation.middleware';
+import { uploadMiddleware } from '../middleware/upload.middleware';
+import { productValidators } from '../validators/product.validator';
 import { AdminRole } from '@prisma/client';
 
 const router = Router();

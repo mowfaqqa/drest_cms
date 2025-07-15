@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { commonValidationSchemas } from '@/utils/validation';
+import { commonValidationSchemas } from '../utils/validation';
 import { AttributeType } from '@prisma/client';
 
 export const categoryValidators = {

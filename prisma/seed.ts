@@ -1,4 +1,4 @@
-import { PrismaClient, AdminRole, AttributeType } from '@prisma/client';
+import { PrismaClient, AdminRole } from '@prisma/client';
 import bcrypt from 'bcryptjs';
 
 const prisma = new PrismaClient();
@@ -118,83 +118,15 @@ async function main() {
       }
     });
 
-    // Men's fashion subcategory
-    const mensCategory = await prisma.category.upsert({
-      where: { slug: 'mens-fashion' },
-      update: {},
-      create: {
-        name: 'Mode Homme',
-        slug: 'mens-fashion',
-        description: 'Vêtements et accessoires pour hommes',
-        parentId: fashionCategory.id,
-        isActive: true,
-        sortOrder: 2
-      }
-    });
 
-    // Beauty category
-    const beautyCategory = await prisma.category.upsert({
-      where: { slug: 'beauty' },
-      update: {},
-      create: {
-        name: 'Beauté',
-        slug: 'beauty',
-        description: 'Produits de beauté et cosmétiques',
-        isActive: true,
-        sortOrder: 2
-      }
-    });
 
-    // Home & Living category
-    const homeCategory = await prisma.category.upsert({
-      where: { slug: 'home-living' },
-      update: {},
-      create: {
-        name: 'Maison & Décoration',
-        slug: 'home-living',
-        description: 'Décoration et accessoires pour la maison',
-        isActive: true,
-        sortOrder: 3
-      }
-    });
+    // Home & Living categor
 
     console.log('✅ Category hierarchy created');
 
-    // Create category attributes
-    const sizeAttribute = await prisma.categoryAttribute.upsert({
-      where: { 
-        categoryId_name: {
-          categoryId: womensCategory.id,
-          name: 'Taille'
-        }
-      },
-      update: {},
-      create: {
-        categoryId: womensCategory.id,
-        name: 'Taille',
-        type: AttributeType.SELECT,
-        required: true,
-        options: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-        sortOrder: 1
-      }
-    });
+ 
 
-    const colorAttribute = await prisma.categoryAttribute.upsert({
-      where: { 
-        categoryId_name: {
-          categoryId: womensCategory.id,
-          name: 'Couleur'
-        }
-      },
-      update: {},
-      create: {
-        categoryId: womensCategory.id,
-        name: 'Couleur',
-        type: AttributeType.COLOR,
-        required: true,
-        sortOrder: 2
-      }
-    });
+    
 
     console.log('✅ Category attributes created');
 

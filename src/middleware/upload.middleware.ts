@@ -2,9 +2,9 @@ import multer from 'multer';
 import path from 'path';
 import fs from 'fs';
 import { Request } from 'express';
-import { ValidationError } from '@/middleware/error.middleware';
-import { FILE_UPLOAD } from '@/utils/constant';
-import { sanitizeFilename } from '@/utils/sanitize';
+import { ValidationError } from '../middleware/error.middleware';
+import { FILE_UPLOAD } from '../utils/constant';
+import { sanitizeFilename } from '../utils/sanitize';
 
 // Ensure upload directory exists
 const uploadDir = process.env['UPLOAD_DIR'] || 'uploads';
@@ -14,7 +14,7 @@ if (!fs.existsSync(uploadDir)) {
 
 // Configure storage
 const storage = multer.diskStorage({
-  destination: (req: any, file: any, cb: any) => {
+  destination: (_req: any, file: any, cb: any) => {
     const subDir = getSubDirectory(file.mimetype);
     const fullPath = path.join(uploadDir, subDir);
     
@@ -24,7 +24,7 @@ const storage = multer.diskStorage({
     
     cb(null, fullPath);
   },
-  filename: (req: any, file: any, cb: any) => {
+  filename: (_req: any, file: any, cb: any) => {
     const sanitizedName = sanitizeFilename(file.originalname);
     const name = path.parse(sanitizedName).name;
     const ext = path.extname(sanitizedName);
@@ -53,7 +53,7 @@ const getSubDirectory = (mimetype: string): string => {
 };
 
 // File filter function
-const fileFilter = (req: Request, file: any, cb: any) => {
+const fileFilter = (_req: Request, file: any, cb: any) => {
   // Check if file type is allowed
   if (!FILE_UPLOAD.ALLOWED_TYPES.includes(file.mimetype)) {
     return cb(new ValidationError(
@@ -75,7 +75,7 @@ const upload = multer({
 });
 
 // Middleware for handling multer errors
-export const handleUploadError = (error: any, req: Request, res: any, next: any) => {
+export const handleUploadError = (error: any, _req: Request, _res: any, next: any) => {
   if (error instanceof multer.MulterError) {
     switch (error.code) {
       case 'LIMIT_FILE_SIZE':
@@ -114,7 +114,7 @@ export const uploadFields = (fields: { name: string; maxCount: number }[]) => [
 export const uploadImage = [
   multer({
     storage,
-    fileFilter: (req, file, cb) => {
+    fileFilter: (_req, file, cb) => {
       if (!file.mimetype.startsWith('image/')) {
         return cb(new ValidationError('Only image files are allowed'));
       }
@@ -135,7 +135,7 @@ export const uploadImage = [
 export const uploadDocument = [
   multer({
     storage,
-    fileFilter: (req, file, cb) => {
+    fileFilter: (_req, file, cb) => {
       const allowedTypes = [
         'text/csv',
         'application/vnd.ms-excel',

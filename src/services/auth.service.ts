@@ -1,9 +1,9 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { AdminRole } from '@prisma/client';
-import { prisma } from '@/config/database';
-import { AuthenticationError, ValidationError } from '@/middleware/error.middleware';
-import { logger, logSecurityEvent } from '@/utils/logger';
+import { prisma } from '../config/database';
+import { AuthenticationError, ValidationError } from '../middleware/error.middleware';
+import { logger, logSecurityEvent } from '../utils/logger';
 
 
 export class AuthService {

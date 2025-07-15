@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
-import { CategoryService } from '@/services/category.service';
-import { asyncHandler, ValidationError, NotFoundError } from '@/middleware/error.middleware';
-import { logAudit } from '@/utils/logger';
-import { createPaginationMeta } from '@/utils/pagination';
+import { CategoryService } from '../services/category.service';
+import { asyncHandler, ValidationError, NotFoundError } from '../middleware/error.middleware';
+import { logAudit } from '../utils/logger';
+import { createPaginationMeta } from '../utils/pagination';
 
 export class CategoriesController {
   private categoryService: CategoryService;
@@ -283,7 +283,7 @@ export class CategoriesController {
   /**
    * Get category statistics
    */
-  getCategoryStats = asyncHandler(async (req: Request, res: Response) => {
+  getCategoryStats = asyncHandler(async (_req: Request, res: Response) => {
     const stats = await this.categoryService.getCategoryStatistics();
 
     res.json({

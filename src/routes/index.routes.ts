@@ -21,7 +21,7 @@ router.use('/categories', categoryRoutes);
 // router.use('/dashboard', dashboardRoutes);
 
 // Health check route
-router.get('/health', (req, res) => {
+router.get('/health', (_req, res) => {
   res.json({
     status: 'OK',
     timestamp: new Date().toISOString(),

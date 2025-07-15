@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
-import { ProductService } from '@/services/product.service';
-import { asyncHandler, ValidationError, NotFoundError } from '@/middleware/error.middleware';
-import { logAudit } from '@/utils/logger';
-import { createPaginationMeta } from '@/utils/pagination';
+import { ProductService } from '../services/product.service';
+import { asyncHandler, ValidationError, NotFoundError } from '../middleware/error.middleware';
+import { logAudit } from '../utils/logger';
+import { createPaginationMeta } from '../utils/pagination';
 
 export class ProductsController {
   private productService: ProductService;
@@ -265,7 +265,7 @@ export class ProductsController {
    * Update product variant
    */
   updateProductVariant = asyncHandler(async (req: Request, res: Response) => {
-    const { id, variantId } = req.params;
+    const { variantId } = req.params;
     const updateData = req.body;
 
     const variant = await this.productService.updateProductVariant(variantId, updateData);
@@ -283,7 +283,7 @@ export class ProductsController {
    * Delete product variant
    */
   deleteProductVariant = asyncHandler(async (req: Request, res: Response) => {
-    const { id, variantId } = req.params;
+    const { variantId } = req.params;
 
     await this.productService.deleteProductVariant(variantId);
 
@@ -390,7 +390,7 @@ export class ProductsController {
   /**
    * Get product statistics
    */
-  getProductStats = asyncHandler(async (req: Request, res: Response) => {
+  getProductStats = asyncHandler(async (_req: Request, res: Response) => {
     const stats = await this.productService.getProductStatistics();
 
     res.json({

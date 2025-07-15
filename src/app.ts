@@ -5,27 +5,28 @@ import morgan from 'morgan';
 import compression from 'compression';
 import cookieParser from 'cookie-parser';
 import rateLimit from 'express-rate-limit';
-import 'express-async-errors';
+// import 'express-async-errors';
 
-import { logRequest } from '@/utils/logger';
-import { errorHandler } from '@/middleware/error.middleware';
-// import { notFoundHandler } from '@/middleware/not-found.middleware';
-import { authMiddleware } from '@/middleware/auth.middleware';
+// Use relative imports to avoid path resolution issues during development
+import { logRequest } from './utils/logger';
+import { errorHandler } from './middleware/error.middleware';
+import { authMiddleware } from './middleware/auth.middleware';
 
-// Import routes
-import authRoutes from '@/routes/auth.routes';
-import productRoutes from '@/routes/products.routes';
-import categoryRoutes from '@/routes/categories.routes';
-// import brandRoutes from '@/routes/brands.routes';
-// import inventoryRoutes from '@/routes/inventory.routes';
-// import reviewRoutes from '@/routes/reviews.routes';
-// import mediaRoutes from '@/routes/media.routes';
-// import dashboardRoutes from '@/routes/dashboard.routes';
+// Import routes with relative paths
+import authRoutes from './routes/auth.routes';
+import productRoutes from './routes/products.routes';
+import categoryRoutes from './routes/categories.routes';
 
 const app = express();
 
 // Trust proxy for accurate IP addresses
 app.set('trust proxy', 1);
+
+// Basic middleware first
+app.use(compression());
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+app.use(cookieParser());
 
 // Security middleware
 app.use(helmet({
@@ -82,19 +83,17 @@ const limiter = rateLimit({
 
 app.use(limiter);
 
-// Basic middleware
-app.use(compression());
-app.use(express.json({ limit: '10mb' }));
-app.use(express.urlencoded({ extended: true, limit: '10mb' }));
-app.use(cookieParser());
-
 // Custom request logging
 app.use((req, res, next) => {
   const start = Date.now();
   
   res.on('finish', () => {
     const duration = Date.now() - start;
-    logRequest(req, res, duration);
+    try {
+      logRequest(req, res, duration);
+    } catch (error) {
+      console.error('Error in request logging:', error);
+    }
   });
   
   next();
@@ -107,6 +106,7 @@ if (process.env['NODE_ENV'] === 'development') {
 
 // Health check endpoint
 app.get('/health', (req, res) => {
+  console.log('Health check accessed', req);
   res.status(200).json({
     status: 'OK',
     timestamp: new Date().toISOString(),
@@ -116,23 +116,40 @@ app.get('/health', (req, res) => {
   });
 });
 
+// Swagger documentation setup (with error handling)
+try {
+  const swaggerUi = require('swagger-ui-express');
+  const YAML = require('yamljs');
+  
+  // Check if swagger.yaml exists before loading
+  const fs = require('fs');
+  const path = require('path');
+  const swaggerPath = path.join(process.cwd(), '/swagger.yaml');
+  
+  if (fs.existsSync(swaggerPath)) {
+    const swaggerDocument = YAML.load(swaggerPath);
+    app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+    console.log('Swagger documentation loaded successfully');
+  } else {
+    console.warn('swagger.yaml not found, skipping Swagger setup');
+  }
+} catch (error: any) {
+  console.warn('Error setting up Swagger documentation:', error.message);
+}
+
 // API routes
 const apiPrefix = process.env['API_PREFIX'] || '/api/v1';
 
 app.use(`${apiPrefix}/auth`, authRoutes);
 app.use(`${apiPrefix}/products`, authMiddleware, productRoutes);
 app.use(`${apiPrefix}/categories`, authMiddleware, categoryRoutes);
-// app.use(`${apiPrefix}/brands`, authMiddleware, brandRoutes);
-// app.use(`${apiPrefix}/inventory`, authMiddleware, inventoryRoutes);
-// app.use(`${apiPrefix}/reviews`, authMiddleware, reviewRoutes);
-// app.use(`${apiPrefix}/media`, authMiddleware, mediaRoutes);
-// app.use(`${apiPrefix}/dashboard`, authMiddleware, dashboardRoutes);
 
 // Serve static files
 app.use('/uploads', express.static('uploads'));
 
 // API documentation endpoint
 app.get(`${apiPrefix}/docs`, (req, res) => {
+  console.log('API Documentation accessed', req.originalUrl);
   res.json({
     name: 'Drest.sn CMS API',
     version: '1.0.0',
@@ -150,11 +167,6 @@ app.get(`${apiPrefix}/docs`, (req, res) => {
     documentation: 'https://docs.drest.sn/cms-api'
   });
 });
-
-// Handle 404 for API routes
-app.use(`${apiPrefix}/*`, 
-    // notFoundHandler
-);
 
 // Handle 404 for other routes
 app.use('*', (req, res) => {

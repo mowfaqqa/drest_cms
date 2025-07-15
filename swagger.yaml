@@ -1,0 +1,2403 @@
+openapi: 3.0.3
+info:
+  title: Drest.sn CMS API
+  description: |
+    Headless CMS API for Drest.sn E-commerce platform
+    
+    ## Authentication
+    This API uses JWT tokens for authentication. Include the token in the Authorization header:
+    ```
+    Authorization: Bearer <your-jwt-token>
+    ```
+    
+    ## Rate Limiting
+    - 100 requests per 15 minutes per IP address
+    - Additional user-based rate limiting may apply to specific endpoints
+    
+    ## Response Format
+    All API responses follow this standard format:
+    ```json
+    {
+      "success": true,
+      "message": "Operation completed successfully",
+      "data": { }
+    }
+    ```
+  version: 1.0.0
+  contact:
+    name: API Support
+    url: https://docs.drest.sn/cms-api
+    email: support@drest.sn
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: http://localhost:3000/api/v1
+    description: Development server
+  - url: https://api.drest.sn/api/v1
+    description: Production server
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token obtained from login endpoint
+    
+    CookieAuth:
+      type: apiKey
+      in: cookie
+      name: accessToken
+      description: JWT token stored in httpOnly cookie
+
+  schemas:
+    # Common Response Schemas
+    ApiResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        message:
+          type: string
+          example: "Operation completed successfully"
+        data:
+          type: object
+
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        message:
+          type: string
+          example: "An error occurred"
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            details:
+              type: array
+              items:
+                type: object
+
+    ValidationError:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        message:
+          type: string
+          example: "Validation failed"
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              example: "VALIDATION_ERROR"
+            details:
+              type: array
+              items:
+                type: object
+                properties:
+                  field:
+                    type: string
+                  message:
+                    type: string
+                  value:
+                    type: string
+
+    PaginationMeta:
+      type: object
+      properties:
+        page:
+          type: integer
+          example: 1
+        limit:
+          type: integer
+          example: 20
+        total:
+          type: integer
+          example: 100
+        totalPages:
+          type: integer
+          example: 5
+        hasNext:
+          type: boolean
+          example: true
+        hasPrev:
+          type: boolean
+          example: false
+
+    # Auth Schemas
+    LoginRequest:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          format: email
+          example: "admin@drest.sn"
+        password:
+          type: string
+          format: password
+          example: "password123"
+
+    LoginResponse:
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
+        - type: object
+          properties:
+            data:
+              type: object
+              properties:
+                user:
+                  $ref: '#/components/schemas/AdminUser'
+                accessToken:
+                  type: string
+                  example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                expiresIn:
+                  type: string
+                  example: "15m"
+
+    AdminUser:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "cuid_123456789"
+        email:
+          type: string
+          format: email
+          example: "admin@drest.sn"
+        firstName:
+          type: string
+          example: "John"
+        lastName:
+          type: string
+          example: "Doe"
+        role:
+          type: string
+          enum: [SUPER_ADMIN, ADMIN, MANAGER, EDITOR, VIEWER]
+          example: "ADMIN"
+        permissions:
+          type: object
+          example:
+            products.read: true
+            products.create: true
+            products.update: true
+            products.delete: true
+        lastLoginAt:
+          type: string
+          format: date-time
+          example: "2024-01-15T10:30:00Z"
+        createdAt:
+          type: string
+          format: date-time
+          example: "2024-01-01T00:00:00Z"
+
+    UpdateProfileRequest:
+      type: object
+      properties:
+        firstName:
+          type: string
+          minLength: 2
+          maxLength: 50
+          example: "John"
+        lastName:
+          type: string
+          minLength: 2
+          maxLength: 50
+          example: "Doe"
+        avatar:
+          type: string
+          format: uri
+          example: "https://example.com/avatar.jpg"
+
+    ChangePasswordRequest:
+      type: object
+      required:
+        - currentPassword
+        - newPassword
+      properties:
+        currentPassword:
+          type: string
+          format: password
+          example: "oldpassword123"
+        newPassword:
+          type: string
+          format: password
+          minLength: 8
+          example: "newpassword123"
+
+    UserSession:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "session_123456789"
+        deviceInfo:
+          type: object
+          properties:
+            browser:
+              type: string
+              example: "Chrome"
+            os:
+              type: string
+              example: "Windows"
+        ipAddress:
+          type: string
+          example: "192.168.1.1"
+        createdAt:
+          type: string
+          format: date-time
+          example: "2024-01-15T10:30:00Z"
+        expiresAt:
+          type: string
+          format: date-time
+          example: "2024-01-22T10:30:00Z"
+        isCurrentSession:
+          type: boolean
+          example: true
+
+    # Product Schemas
+    Product:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "prod_123456789"
+        name:
+          type: string
+          example: "Wireless Bluetooth Headphones"
+        slug:
+          type: string
+          example: "wireless-bluetooth-headphones"
+        description:
+          type: string
+          example: "High-quality wireless headphones with noise cancellation"
+        shortDescription:
+          type: string
+          example: "Premium wireless headphones"
+        basePrice:
+          type: number
+          format: decimal
+          example: 99.99
+        comparePrice:
+          type: number
+          format: decimal
+          example: 149.99
+        costPrice:
+          type: number
+          format: decimal
+          example: 50.00
+        images:
+          type: array
+          items:
+            type: object
+            properties:
+              url:
+                type: string
+                format: uri
+              alt:
+                type: string
+              isPrimary:
+                type: boolean
+        videos:
+          type: array
+          items:
+            type: object
+            properties:
+              url:
+                type: string
+                format: uri
+              title:
+                type: string
+              thumbnail:
+                type: string
+                format: uri
+        seoTitle:
+          type: string
+          example: "Best Wireless Headphones 2024"
+        seoDescription:
+          type: string
+          example: "Discover premium wireless headphones with superior sound quality"
+        tags:
+          type: array
+          items:
+            type: string
+          example: ["electronics", "audio", "wireless"]
+        isActive:
+          type: boolean
+          example: true
+        isFeatured:
+          type: boolean
+          example: false
+        isDigital:
+          type: boolean
+          example: false
+        requiresShipping:
+          type: boolean
+          example: true
+        trackInventory:
+          type: boolean
+          example: true
+        allowBackorder:
+          type: boolean
+          example: false
+        lowStockThreshold:
+          type: integer
+          example: 10
+        categoryId:
+          type: string
+          example: "cat_123456789"
+        brandId:
+          type: string
+          example: "brand_123456789"
+        category:
+          $ref: '#/components/schemas/Category'
+        variants:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductVariant'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        publishedAt:
+          type: string
+          format: date-time
+
+    CreateProductRequest:
+      type: object
+      required:
+        - name
+        - basePrice
+        - categoryId
+      properties:
+        name:
+          type: string
+          minLength: 2
+          maxLength: 200
+          example: "Wireless Bluetooth Headphones"
+        slug:
+          type: string
+          pattern: '^[a-z0-9-]+$'
+          example: "wireless-bluetooth-headphones"
+        description:
+          type: string
+          maxLength: 5000
+          example: "High-quality wireless headphones"
+        shortDescription:
+          type: string
+          maxLength: 500
+          example: "Premium wireless headphones"
+        basePrice:
+          type: number
+          format: decimal
+          minimum: 0
+          example: 99.99
+        comparePrice:
+          type: number
+          format: decimal
+          minimum: 0
+          example: 149.99
+        costPrice:
+          type: number
+          format: decimal
+          minimum: 0
+          example: 50.00
+        categoryId:
+          type: string
+          example: "cat_123456789"
+        brandId:
+          type: string
+          example: "brand_123456789"
+        images:
+          type: array
+          maxItems: 10
+          items:
+            type: object
+            required:
+              - url
+              - alt
+            properties:
+              url:
+                type: string
+                format: uri
+              alt:
+                type: string
+                maxLength: 200
+              isPrimary:
+                type: boolean
+                default: false
+        videos:
+          type: array
+          maxItems: 5
+          items:
+            type: object
+            required:
+              - url
+            properties:
+              url:
+                type: string
+                format: uri
+              title:
+                type: string
+                maxLength: 200
+              thumbnail:
+                type: string
+                format: uri
+        seoTitle:
+          type: string
+          maxLength: 60
+        seoDescription:
+          type: string
+          maxLength: 160
+        tags:
+          type: array
+          maxItems: 20
+          items:
+            type: string
+            maxLength: 50
+        isActive:
+          type: boolean
+          default: true
+        isFeatured:
+          type: boolean
+          default: false
+        isDigital:
+          type: boolean
+          default: false
+        requiresShipping:
+          type: boolean
+          default: true
+        trackInventory:
+          type: boolean
+          default: true
+        allowBackorder:
+          type: boolean
+          default: false
+        lowStockThreshold:
+          type: integer
+          minimum: 0
+
+    UpdateProductRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 2
+          maxLength: 200
+        slug:
+          type: string
+          pattern: '^[a-z0-9-]+$'
+        description:
+          type: string
+          maxLength: 5000
+        shortDescription:
+          type: string
+          maxLength: 500
+        basePrice:
+          type: number
+          format: decimal
+          minimum: 0
+        comparePrice:
+          type: number
+          format: decimal
+          minimum: 0
+        costPrice:
+          type: number
+          format: decimal
+          minimum: 0
+        categoryId:
+          type: string
+        brandId:
+          type: string
+        images:
+          type: array
+          maxItems: 10
+          items:
+            type: object
+            required:
+              - url
+              - alt
+            properties:
+              url:
+                type: string
+                format: uri
+              alt:
+                type: string
+                maxLength: 200
+              isPrimary:
+                type: boolean
+        videos:
+          type: array
+          maxItems: 5
+          items:
+            type: object
+            required:
+              - url
+            properties:
+              url:
+                type: string
+                format: uri
+              title:
+                type: string
+                maxLength: 200
+              thumbnail:
+                type: string
+                format: uri
+        seoTitle:
+          type: string
+          maxLength: 60
+        seoDescription:
+          type: string
+          maxLength: 160
+        tags:
+          type: array
+          maxItems: 20
+          items:
+            type: string
+            maxLength: 50
+        isActive:
+          type: boolean
+        isFeatured:
+          type: boolean
+        isDigital:
+          type: boolean
+        requiresShipping:
+          type: boolean
+        trackInventory:
+          type: boolean
+        allowBackorder:
+          type: boolean
+        lowStockThreshold:
+          type: integer
+          minimum: 0
+
+    ProductVariant:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "var_123456789"
+        productId:
+          type: string
+          example: "prod_123456789"
+        name:
+          type: string
+          example: "Large / Red"
+        sku:
+          type: string
+          example: "WBH-L-RED"
+        barcode:
+          type: string
+          example: "1234567890123"
+        price:
+          type: number
+          format: decimal
+          example: 109.99
+        comparePrice:
+          type: number
+          format: decimal
+          example: 159.99
+        costPrice:
+          type: number
+          format: decimal
+          example: 55.00
+        attributes:
+          type: object
+          properties:
+            size:
+              type: string
+              example: "Large"
+            color:
+              type: string
+              example: "Red"
+        images:
+          type: array
+          items:
+            type: object
+            properties:
+              url:
+                type: string
+                format: uri
+              alt:
+                type: string
+              isPrimary:
+                type: boolean
+        isActive:
+          type: boolean
+          example: true
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    CreateProductVariantRequest:
+      type: object
+      required:
+        - name
+        - sku
+        - attributes
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 200
+          example: "Large / Red"
+        sku:
+          type: string
+          minLength: 1
+          maxLength: 100
+          example: "WBH-L-RED"
+        barcode:
+          type: string
+          maxLength: 50
+          example: "1234567890123"
+        price:
+          type: number
+          format: decimal
+          minimum: 0
+          example: 109.99
+        comparePrice:
+          type: number
+          format: decimal
+          minimum: 0
+        costPrice:
+          type: number
+          format: decimal
+          minimum: 0
+        attributes:
+          type: object
+          properties:
+            size:
+              type: string
+              example: "Large"
+            color:
+              type: string
+              example: "Red"
+        images:
+          type: array
+          maxItems: 5
+          items:
+            type: object
+            required:
+              - url
+              - alt
+            properties:
+              url:
+                type: string
+                format: uri
+              alt:
+                type: string
+                maxLength: 200
+              isPrimary:
+                type: boolean
+                default: false
+        isActive:
+          type: boolean
+          default: true
+
+    BulkUpdateProductsRequest:
+      type: object
+      required:
+        - productIds
+        - updateData
+      properties:
+        productIds:
+          type: array
+          minItems: 1
+          items:
+            type: string
+          example: ["prod_123", "prod_456", "prod_789"]
+        updateData:
+          type: object
+          minProperties: 1
+          properties:
+            isActive:
+              type: boolean
+            isFeatured:
+              type: boolean
+            categoryId:
+              type: string
+            brandId:
+              type: string
+          example:
+            isActive: true
+            isFeatured: false
+
+    ProductStats:
+      type: object
+      properties:
+        totalProducts:
+          type: integer
+          example: 1250
+        activeProducts:
+          type: integer
+          example: 1100
+        featuredProducts:
+          type: integer
+          example: 25
+        lowStockProducts:
+          type: integer
+          example: 45
+        outOfStockProducts:
+          type: integer
+          example: 12
+
+    # Category Schemas
+    Category:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "cat_123456789"
+        name:
+          type: string
+          example: "Electronics"
+        slug:
+          type: string
+          example: "electronics"
+        description:
+          type: string
+          example: "Electronic devices and accessories"
+        image:
+          type: string
+          format: uri
+          example: "https://example.com/category.jpg"
+        seoTitle:
+          type: string
+          example: "Electronics - Best Deals"
+        seoDescription:
+          type: string
+          example: "Find the best electronic devices at great prices"
+        isActive:
+          type: boolean
+          example: true
+        sortOrder:
+          type: integer
+          example: 1
+        parentId:
+          type: string
+          example: "cat_parent_123"
+        parent:
+          $ref: '#/components/schemas/Category'
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/Category'
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/CategoryAttribute'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    CreateCategoryRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          minLength: 2
+          maxLength: 100
+          example: "Electronics"
+        slug:
+          type: string
+          pattern: '^[a-z0-9-]+$'
+          example: "electronics"
+        description:
+          type: string
+          maxLength: 1000
+          example: "Electronic devices and accessories"
+        image:
+          type: string
+          format: uri
+          example: "https://example.com/category.jpg"
+        parentId:
+          type: string
+          example: "cat_parent_123"
+        seoTitle:
+          type: string
+          maxLength: 60
+          example: "Electronics - Best Deals"
+        seoDescription:
+          type: string
+          maxLength: 160
+          example: "Find the best electronic devices"
+        isActive:
+          type: boolean
+          default: true
+        sortOrder:
+          type: integer
+          minimum: 0
+          example: 1
+
+    UpdateCategoryRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 2
+          maxLength: 100
+        slug:
+          type: string
+          pattern: '^[a-z0-9-]+$'
+        description:
+          type: string
+          maxLength: 1000
+        image:
+          type: string
+          format: uri
+        parentId:
+          type: string
+        seoTitle:
+          type: string
+          maxLength: 60
+        seoDescription:
+          type: string
+          maxLength: 160
+        isActive:
+          type: boolean
+        sortOrder:
+          type: integer
+          minimum: 0
+
+    CategoryAttribute:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "attr_123456789"
+        categoryId:
+          type: string
+          example: "cat_123456789"
+        name:
+          type: string
+          example: "Size"
+        type:
+          type: string
+          enum: [TEXT, NUMBER, SELECT, MULTI_SELECT, BOOLEAN, COLOR]
+          example: "SELECT"
+        required:
+          type: boolean
+          example: false
+        options:
+          type: array
+          items:
+            type: string
+          example: ["S", "M", "L", "XL"]
+        sortOrder:
+          type: integer
+          example: 1
+
+    CreateCategoryAttributeRequest:
+      type: object
+      required:
+        - name
+        - type
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "Size"
+        type:
+          type: string
+          enum: [TEXT, NUMBER, SELECT, MULTI_SELECT, BOOLEAN, COLOR]
+          example: "SELECT"
+        required:
+          type: boolean
+          default: false
+        options:
+          type: array
+          items:
+            type: string
+            maxLength: 50
+          example: ["S", "M", "L", "XL"]
+        sortOrder:
+          type: integer
+          minimum: 0
+
+    ReorderCategoriesRequest:
+      type: object
+      required:
+        - categoryOrders
+      properties:
+        categoryOrders:
+          type: array
+          minItems: 1
+          items:
+            type: object
+            required:
+              - id
+              - sortOrder
+            properties:
+              id:
+                type: string
+              sortOrder:
+                type: integer
+                minimum: 0
+          example:
+            - id: "cat_123"
+              sortOrder: 1
+            - id: "cat_456"
+              sortOrder: 2
+
+    CategoryStats:
+      type: object
+      properties:
+        totalCategories:
+          type: integer
+          example: 150
+        activeCategories:
+          type: integer
+          example: 135
+        rootCategories:
+          type: integer
+          example: 12
+        avgProductsPerCategory:
+          type: number
+          format: decimal
+          example: 8.3
+
+  responses:
+    UnauthorizedError:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            success: false
+            message: "Access token is required"
+            error:
+              code: "AUTHENTICATION_ERROR"
+
+    ForbiddenError:
+      description: Insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            success: false
+            message: "Missing permission: products.read"
+            error:
+              code: "AUTHORIZATION_ERROR"
+
+    NotFoundError:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            success: false
+            message: "Product not found"
+            error:
+              code: "NOT_FOUND"
+
+    ValidationError:
+      description: Validation error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ValidationError'
+          example:
+            success: false
+            message: "Validation failed"
+            error:
+              code: "VALIDATION_ERROR"
+              details:
+                - field: "name"
+                  message: "Name is required"
+                  value: ""
+
+    RateLimitError:
+      description: Rate limit exceeded
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: false
+              message:
+                type: string
+                example: "Rate limit exceeded"
+              retryAfter:
+                type: integer
+                example: 900
+                description: "Seconds to wait before retrying"
+
+# Security applied globally
+security:
+  - BearerAuth: []
+  - CookieAuth: []
+
+paths:
+  # Health Check
+  /health:
+    get:
+      tags:
+        - Health
+      summary: Health check endpoint
+      description: Check if the API is running and healthy
+      security: []
+      responses:
+        '200':
+          description: API is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "OK"
+                  timestamp:
+                    type: string
+                    format: date-time
+                  service:
+                    type: string
+                    example: "drest-cms-api"
+                  version:
+                    type: string
+                    example: "1.0.0"
+
+  # Authentication Endpoints
+  /auth/login:
+    post:
+      tags:
+        - Authentication
+      summary: Admin login
+      description: Authenticate admin user and get access token
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '200':
+          description: Login successful
+          headers:
+            Set-Cookie:
+              description: Access token cookie
+              schema:
+                type: string
+                example: "accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...; HttpOnly; Secure; SameSite=Strict"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+        '400':
+          description: Invalid credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+
+  /auth/refresh:
+    post:
+      tags:
+        - Authentication
+      summary: Refresh access token
+      description: Get new access token using refresh token
+      responses:
+        '200':
+          description: Token refreshed successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ApiResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          accessToken:
+                            type: string
+                          expiresIn:
+                            type: string
+                            example: "15m"
+        '401':
+          description: Invalid or expired refresh token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /auth/logout:
+    post:
+      tags:
+        - Authentication
+      summary: Logout
+      description: Logout user and clear tokens
+      responses:
+        '200':
+          description: Logout successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+
+  /auth/profile:
+    get:
+      tags:
+        - Authentication
+      summary: Get current user profile
+      description: Get authenticated user's profile information
+      responses:
+        '200':
+          description: Profile retrieved successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ApiResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          user:
+                            $ref: '#/components/schemas/AdminUser'
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    put:
+      tags:
+        - Authentication
+      summary: Update user profile
+      description: Update authenticated user's profile information
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateProfileRequest'
+      responses:
+        '200':
+          description: Profile updated successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ApiResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          user:
+                            $ref: '#/components/schemas/AdminUser'
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+
+  /auth/change-password:
+    post:
+      tags:
+        - Authentication
+      summary: Change password
+      description: Change user's password
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangePasswordRequest'
+      responses:
+        '200':
+          description: Password changed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+        '400':
+          description: Invalid current password
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+
+  /auth/sessions:
+    get:
+      tags:
+        - Authentication
+      summary: Get active sessions
+      description: Get list of user's active sessions
+      responses:
+        '200':
+          description: Sessions retrieved successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ApiResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          sessions:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/UserSession'
+
+  /auth/sessions/{sessionId}:
+    delete:
+      tags:
+        - Authentication
+      summary: Revoke session
+      description: Revoke a specific user session
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "session_123456789"
+      responses:
+        '200':
+          description: Session revoked successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+        '404':
+          description: Session not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /auth/validate:
+    get:
+      tags:
+        - Authentication
+      summary: Validate token
+      description: Validate current access token for internal use
+      responses:
+        '200':
+          description: Token is valid
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ApiResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          valid:
+                            type: boolean
+                            example: true
+                          user:
+                            $ref: '#/components/schemas/AdminUser'
+
+  # Product Endpoints
+  /products:
+    get:
+      tags:
+        - Products
+      summary: Get all products
+      description: Get list of products with filtering and pagination
+      parameters:
+        - name: page
+          in: query
+          description: Page number
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+        - name: limit
+          in: query
+          description: Number of items per page max 100
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 20
+        - name: search
+          in: query
+          description: Search query for product name or description
+          schema:
+            type: string
+        - name: categoryId
+          in: query
+          description: Filter by category ID
+          schema:
+            type: string
+        - name: brandId
+          in: query
+          description: Filter by brand ID
+          schema:
+            type: string
+        - name: isActive
+          in: query
+          description: Filter by active status
+          schema:
+            type: boolean
+        - name: isFeatured
+          in: query
+          description: Filter by featured status
+          schema:
+            type: boolean
+        - name: sortBy
+          in: query
+          description: Sort field
+          schema:
+            type: string
+            enum: [name, createdAt, updatedAt, basePrice]
+            default: createdAt
+        - name: sortOrder
+          in: query
+          description: Sort order
+          schema:
+            type: string
+            enum: [asc, desc]
+            default: desc
+      responses:
+        '200':
+          description: Products retrieved successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ApiResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          products:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/Product'
+                          pagination:
+                            $ref: '#/components/schemas/PaginationMeta'
+
+    post:
+      tags:
+        - Products
+      summary: Create new product
+      description: Create a new product requires products.create permission
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProductRequest'
+      responses:
+        '201':
+          description: Product created successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ApiResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          product:
+                            $ref: '#/components/schemas/Product'
+        '403':
+          description: Insufficient permissions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+
+  /products/stats:
+    get:
+      tags:
+        - Products
+      summary: Get product statistics
+      description: Get overview statistics for products
+      responses:
+        '200':
+          description: Statistics retrieved successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ApiResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          stats:
+                            $ref: '#/components/schemas/ProductStats'
+
+  /products/search:
+    get:
+      tags:
+        - Products
+      summary: Search products
+      description: Search products by name or description
+      parameters:
+        - name: q
+          in: query
+          required: true
+          description: Search query
+          schema:
+            type: string
+            minLength: 1
+            maxLength: 100
+        - name: limit
+          in: query
+          description: Maximum number of results
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 50
+            default: 10
+      responses:
+        '200':
+          description: Search results
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ApiResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          products:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/Product'
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+
+  /products/category/{categoryId}:
+    get:
+      tags:
+        - Products
+      summary: Get products by category
+      description: Get products belonging to a specific category
+      parameters:
+        - name: categoryId
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "cat_123456789"
+        - name: page
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 20
+        - name: includeSubcategories
+          in: query
+          description: Include products from subcategories
+          schema:
+            type: boolean
+            default: true
+      responses:
+        '200':
+          description: Products retrieved successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ApiResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          products:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/Product'
+                          pagination:
+                            $ref: '#/components/schemas/PaginationMeta'
+                          category:
+                            $ref: '#/components/schemas/Category'
+
+  /products/{id}:
+    get:
+      tags:
+        - Products
+      summary: Get product by ID
+      description: Get detailed information about a specific product
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "prod_123456789"
+        - name: include
+          in: query
+          description: Related data to include
+          schema:
+            type: array
+            items:
+              type: string
+              enum: [variants, inventory, category, brand, reviews]
+          style: form
+          explode: true
+          example: ["variants", "category"]
+      responses:
+        '200':
+          description: Product retrieved successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ApiResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          product:
+                            $ref: '#/components/schemas/Product'
+        '404':
+          description: Product not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    put:
+      tags:
+        - Products
+      summary: Update product
+      description: Update an existing product requires products.update permission
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "prod_123456789"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateProductRequest'
+      responses:
+        '200':
+          description: Product updated successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ApiResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          product:
+                            $ref: '#/components/schemas/Product'
+        '404':
+          description: Product not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Insufficient permissions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+
+    delete:
+      tags:
+        - Products
+      summary: Delete product
+      description: Delete a product requires products.delete permission
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "prod_123456789"
+      responses:
+        '200':
+          description: Product deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+        '404':
+          description: Product not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Insufficient permissions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /products/{id}/duplicate:
+    post:
+      tags:
+        - Products
+      summary: Duplicate product
+      description: Create a copy of an existing product
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "prod_123456789"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  minLength: 2
+                  maxLength: 200
+                  example: "Copy of Wireless Bluetooth Headphones"
+      responses:
+        '201':
+          description: Product duplicated successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ApiResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          product:
+                            $ref: '#/components/schemas/Product'
+
+  /products/{id}/status:
+    patch:
+      tags:
+        - Products
+      summary: Update product status
+      description: Activate or deactivate a product
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "prod_123456789"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - isActive
+              properties:
+                isActive:
+                  type: boolean
+                  example: true
+      responses:
+        '200':
+          description: Product status updated successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ApiResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          product:
+                            $ref: '#/components/schemas/Product'
+
+  /products/{id}/variants:
+    get:
+      tags:
+        - Products
+      summary: Get product variants
+      description: Get all variants for a specific product
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "prod_123456789"
+      responses:
+        '200':
+          description: Variants retrieved successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ApiResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          variants:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/ProductVariant'
+
+    post:
+      tags:
+        - Products
+      summary: Create product variant
+      description: Create a new variant for a product
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "prod_123456789"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProductVariantRequest'
+      responses:
+        '201':
+          description: Variant created successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ApiResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          variant:
+                            $ref: '#/components/schemas/ProductVariant'
+
+  /products/{id}/variants/{variantId}:
+    put:
+      tags:
+        - Products
+      summary: Update product variant
+      description: Update an existing product variant
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "prod_123456789"
+        - name: variantId
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "var_123456789"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProductVariantRequest'
+      responses:
+        '200':
+          description: Variant updated successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ApiResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          variant:
+                            $ref: '#/components/schemas/ProductVariant'
+
+    delete:
+      tags:
+        - Products
+      summary: Delete product variant
+      description: Delete a product variant
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "prod_123456789"
+        - name: variantId
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "var_123456789"
+      responses:
+        '200':
+          description: Variant deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+
+  /products/{id}/analytics:
+    get:
+      tags:
+        - Products
+      summary: Get product analytics
+      description: Get analytics data for a specific product
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "prod_123456789"
+        - name: period
+          in: query
+          description: Analytics period
+          schema:
+            type: string
+            enum: [7d, 30d, 90d, 1y]
+            default: 30d
+      responses:
+        '200':
+          description: Analytics retrieved successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ApiResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          analytics:
+                            type: object
+                            properties:
+                              views:
+                                type: integer
+                              orders:
+                                type: integer
+                              revenue:
+                                type: number
+                                format: decimal
+                              conversionRate:
+                                type: number
+                                format: decimal
+
+  /products/bulk-update:
+    patch:
+      tags:
+        - Products
+      summary: Bulk update products
+      description: Update multiple products at once
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BulkUpdateProductsRequest'
+      responses:
+        '200':
+          description: Products updated successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ApiResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          updatedCount:
+                            type: integer
+                            example: 25
+
+  /products/import:
+    post:
+      tags:
+        - Products
+      summary: Import products from file
+      description: Import products from CSV or Excel file requires ADMIN or SUPER_ADMIN role
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: CSV or Excel file containing product data
+      responses:
+        '200':
+          description: Import completed
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ApiResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          successful:
+                            type: integer
+                            example: 150
+                          errors:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                row:
+                                  type: integer
+                                error:
+                                  type: string
+
+  /products/export/csv:
+    get:
+      tags:
+        - Products
+      summary: Export products to CSV
+      description: Export products data as CSV file
+      parameters:
+        - name: filters
+          in: query
+          description: JSON string of filters to apply
+          schema:
+            type: string
+          example: '{"categoryId": "cat_123", "isActive": true}'
+      responses:
+        '200':
+          description: CSV file
+          content:
+            text/csv:
+              schema:
+                type: string
+                format: binary
+
+  /products/export/excel:
+    get:
+      tags:
+        - Products
+      summary: Export products to Excel
+      description: Export products data as Excel file
+      parameters:
+        - name: filters
+          in: query
+          description: JSON string of filters to apply
+          schema:
+            type: string
+          example: '{"categoryId": "cat_123", "isActive": true}'
+      responses:
+        '200':
+          description: Excel file
+          content:
+            application/vnd.openxmlformats-officedocument.spreadsheetml.sheet:
+              schema:
+                type: string
+                format: binary
+
+  # Category Endpoints
+  /categories:
+    get:
+      tags:
+        - Categories
+      summary: Get all categories
+      description: Get categories with optional hierarchy or flat list
+      parameters:
+        - name: flat
+          in: query
+          description: Return flat list instead of hierarchy
+          schema:
+            type: boolean
+            default: false
+        - name: includeProducts
+          in: query
+          description: Include product count for each category
+          schema:
+            type: boolean
+            default: false
+        - name: isActive
+          in: query
+          description: Filter by active status
+          schema:
+            type: boolean
+        - name: page
+          in: query
+          description: Page number only for flat=true
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+        - name: limit
+          in: query
+          description: Items per page only for flat=true
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 50
+      responses:
+        '200':
+          description: Categories retrieved successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ApiResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          categories:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/Category'
+                          pagination:
+                            $ref: '#/components/schemas/PaginationMeta'
+
+    post:
+      tags:
+        - Categories
+      summary: Create new category
+      description: Create a new category requires categories.create permission
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCategoryRequest'
+      responses:
+        '201':
+          description: Category created successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ApiResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          category:
+                            $ref: '#/components/schemas/Category'
+        '403':
+          description: Insufficient permissions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+
+  /categories/stats:
+    get:
+      tags:
+        - Categories
+      summary: Get category statistics
+      description: Get overview statistics for categories
+      responses:
+        '200':
+          description: Statistics retrieved successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ApiResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          stats:
+                            $ref: '#/components/schemas/CategoryStats'
+
+  /categories/search:
+    get:
+      tags:
+        - Categories
+      summary: Search categories
+      description: Search categories by name
+      parameters:
+        - name: q
+          in: query
+          required: true
+          description: Search query
+          schema:
+            type: string
+            minLength: 1
+            maxLength: 100
+        - name: limit
+          in: query
+          description: Maximum number of results
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 50
+            default: 10
+      responses:
+        '200':
+          description: Search results
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ApiResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          categories:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/Category'
+
+  /categories/{id}:
+    get:
+      tags:
+        - Categories
+      summary: Get category by ID
+      description: Get detailed information about a specific category
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "cat_123456789"
+        - name: includeProducts
+          in: query
+          description: Include products in this category
+          schema:
+            type: boolean
+            default: false
+        - name: includeChildren
+          in: query
+          description: Include child categories
+          schema:
+            type: boolean
+            default: true
+      responses:
+        '200':
+          description: Category retrieved successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ApiResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          category:
+                            $ref: '#/components/schemas/Category'
+        '404':
+          description: Category not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    put:
+      tags:
+        - Categories
+      summary: Update category
+      description: Update an existing category requires categories.update permission
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "cat_123456789"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCategoryRequest'
+      responses:
+        '200':
+          description: Category updated successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ApiResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          category:
+                            $ref: '#/components/schemas/Category'
+        '404':
+          description: Category not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Insufficient permissions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+
+    delete:
+      tags:
+        - Categories
+      summary: Delete category
+      description: Delete a category requires categories.delete permission
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "cat_123456789"
+        - name: moveProductsTo
+          in: query
+          description: Category ID to move products to before deletion
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Category deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+        '404':
+          description: Category not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Insufficient permissions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+tags:
+  - name: Health
+    description: Health check endpoints
+  - name: Authentication
+    description: Authentication and user management endpoints
+  - name: Products
+    description: Product management endpoints
+  - name: Categories
+    description: Category management endpoints
+
+externalDocs:
+  description: Find more info about the API
+  url: https://docs.drest.sn/cms-api
