@@ -1,0 +1,21 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const auth_controller_1 = require("../controllers/auth.controller");
+const auth_middleware_1 = require("../middleware/auth.middleware");
+const validation_middleware_1 = require("../middleware/validation.middleware");
+const auth_validator_1 = require("../validators/auth.validator");
+const router = (0, express_1.Router)();
+const authController = new auth_controller_1.AuthController();
+router.post('/login', (0, validation_middleware_1.validateRequest)(auth_validator_1.authValidators.login), authController.login);
+router.use(auth_middleware_1.authMiddleware);
+router.post('/refresh', authController.refreshToken);
+router.post('/logout', authController.logout);
+router.get('/profile', authController.getProfile);
+router.put('/profile', (0, validation_middleware_1.validateRequest)(auth_validator_1.authValidators.updateProfile), authController.updateProfile);
+router.post('/change-password', (0, validation_middleware_1.validateRequest)(auth_validator_1.authValidators.changePassword), authController.changePassword);
+router.get('/sessions', authController.getSessions);
+router.delete('/sessions/:sessionId', authController.revokeSession);
+router.get('/validate', authController.validateToken);
+exports.default = router;
+//# sourceMappingURL=auth.routes.js.map

@@ -33,7 +33,7 @@ info:
     url: https://opensource.org/licenses/MIT
 
 servers:
-  - url: http://localhost:3000/api/v1
+  - url: https://drest-cms.onrender.com/api/v1
     description: Development server
   - url: https://api.drest.sn/api/v1
     description: Production server

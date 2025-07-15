@@ -342,3 +342,543 @@
   environment: 'development',
   timestamp: '2025-07-15 10:46:40'
 }
+{
+  message: 'Checking database connection...',
+  level: 'info',
+  service: 'drest_cms',
+  environment: 'development',
+  timestamp: '2025-07-15 10:59:58'
+}
+{
+  message: 'Database connection successful',
+  level: 'info',
+  service: 'drest_cms',
+  environment: 'development',
+  timestamp: '2025-07-15 11:00:01'
+}
+{
+  service: 'drest_cms',
+  environment: 'development',
+  products: 1,
+  categories: 2,
+  users: 0,
+  orders: 0,
+  level: 'info',
+  message: 'Database statistics:',
+  timestamp: '2025-07-15 11:00:03'
+}
+{
+  message: '🚀 Server started successfully!',
+  level: 'info',
+  service: 'drest_cms',
+  environment: 'development',
+  timestamp: '2025-07-15 11:00:03'
+}
+{
+  message: '📝 Environment: development',
+  level: 'info',
+  service: 'drest_cms',
+  environment: 'development',
+  timestamp: '2025-07-15 11:00:03'
+}
+{
+  message: '🌐 Server running on port 3000',
+  level: 'info',
+  service: 'drest_cms',
+  environment: 'development',
+  timestamp: '2025-07-15 11:00:03'
+}
+{
+  message: '🔗 API URL: http://localhost:3000/api/v1',
+  level: 'info',
+  service: 'drest_cms',
+  environment: 'development',
+  timestamp: '2025-07-15 11:00:03'
+}
+{
+  message: '📊 Health check: http://localhost:3000/health',
+  level: 'info',
+  service: 'drest_cms',
+  environment: 'development',
+  timestamp: '2025-07-15 11:00:03'
+}
+{
+  message: '🎨 Admin Dashboard: http://localhost:3000/admin',
+  level: 'info',
+  service: 'drest_cms',
+  environment: 'development',
+  timestamp: '2025-07-15 11:00:03'
+}
+{
+  message: '📚 API Documentation: http://localhost:3000/api/v1/docs',
+  level: 'info',
+  service: 'drest_cms',
+  environment: 'development',
+  timestamp: '2025-07-15 11:00:03'
+}
+{
+  service: 'drest_cms',
+  environment: 'development',
+  method: 'GET',
+  url: '/',
+  statusCode: 304,
+  duration: '14ms',
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  ip: '::1',
+  userId: undefined,
+  level: 'info',
+  message: 'HTTP Request',
+  timestamp: '2025-07-15 11:03:07'
+}
+{
+  service: 'drest_cms',
+  environment: 'development',
+  method: 'GET',
+  url: '/swagger-ui-init.js',
+  statusCode: 304,
+  duration: '11ms',
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  ip: '::1',
+  userId: undefined,
+  level: 'info',
+  message: 'HTTP Request',
+  timestamp: '2025-07-15 11:03:07'
+}
+{
+  service: 'drest_cms',
+  environment: 'development',
+  method: 'GET',
+  url: '/swagger-ui.css',
+  statusCode: 304,
+  duration: '15ms',
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  ip: '::1',
+  userId: undefined,
+  level: 'info',
+  message: 'HTTP Request',
+  timestamp: '2025-07-15 11:03:07'
+}
+{
+  service: 'drest_cms',
+  environment: 'development',
+  method: 'GET',
+  url: '/swagger-ui-bundle.js',
+  statusCode: 304,
+  duration: '1ms',
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  ip: '::1',
+  userId: undefined,
+  level: 'info',
+  message: 'HTTP Request',
+  timestamp: '2025-07-15 11:03:07'
+}
+{
+  service: 'drest_cms',
+  environment: 'development',
+  method: 'GET',
+  url: '/swagger-ui-standalone-preset.js',
+  statusCode: 304,
+  duration: '11ms',
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  ip: '::1',
+  userId: undefined,
+  level: 'info',
+  message: 'HTTP Request',
+  timestamp: '2025-07-15 11:03:07'
+}
+{
+  service: 'drest_cms',
+  environment: 'development',
+  method: 'GET',
+  url: '/favicon-32x32.png',
+  statusCode: 304,
+  duration: '1ms',
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  ip: '::1',
+  userId: undefined,
+  level: 'info',
+  message: 'HTTP Request',
+  timestamp: '2025-07-15 11:03:07'
+}
+{
+  service: 'drest_cms',
+  environment: 'development',
+  method: 'GET',
+  url: '/favicon-32x32.png',
+  statusCode: 304,
+  duration: '1ms',
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  ip: '::1',
+  userId: undefined,
+  level: 'info',
+  message: 'HTTP Request',
+  timestamp: '2025-07-15 11:03:07'
+}
+{
+  service: 'drest_cms',
+  environment: 'development',
+  method: 'GET',
+  url: '/',
+  statusCode: 304,
+  duration: '1ms',
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  ip: '::1',
+  userId: undefined,
+  level: 'info',
+  message: 'HTTP Request',
+  timestamp: '2025-07-15 11:03:14'
+}
+{
+  service: 'drest_cms',
+  environment: 'development',
+  method: 'GET',
+  url: '/swagger-ui.css',
+  statusCode: 304,
+  duration: '3ms',
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  ip: '::1',
+  userId: undefined,
+  level: 'info',
+  message: 'HTTP Request',
+  timestamp: '2025-07-15 11:03:14'
+}
+{
+  service: 'drest_cms',
+  environment: 'development',
+  method: 'GET',
+  url: '/swagger-ui-bundle.js',
+  statusCode: 304,
+  duration: '4ms',
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  ip: '::1',
+  userId: undefined,
+  level: 'info',
+  message: 'HTTP Request',
+  timestamp: '2025-07-15 11:03:14'
+}
+{
+  service: 'drest_cms',
+  environment: 'development',
+  method: 'GET',
+  url: '/swagger-ui-init.js',
+  statusCode: 304,
+  duration: '1ms',
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  ip: '::1',
+  userId: undefined,
+  level: 'info',
+  message: 'HTTP Request',
+  timestamp: '2025-07-15 11:03:14'
+}
+{
+  service: 'drest_cms',
+  environment: 'development',
+  method: 'GET',
+  url: '/swagger-ui-standalone-preset.js',
+  statusCode: 304,
+  duration: '4ms',
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  ip: '::1',
+  userId: undefined,
+  level: 'info',
+  message: 'HTTP Request',
+  timestamp: '2025-07-15 11:03:14'
+}
+{
+  service: 'drest_cms',
+  environment: 'development',
+  method: 'GET',
+  url: '/favicon-32x32.png',
+  statusCode: 304,
+  duration: '1ms',
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  ip: '::1',
+  userId: undefined,
+  level: 'info',
+  message: 'HTTP Request',
+  timestamp: '2025-07-15 11:03:14'
+}
+{
+  service: 'drest_cms',
+  environment: 'development',
+  method: 'GET',
+  url: '/favicon-32x32.png',
+  statusCode: 304,
+  duration: '1ms',
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  ip: '::1',
+  userId: undefined,
+  level: 'info',
+  message: 'HTTP Request',
+  timestamp: '2025-07-15 11:03:14'
+}
+{
+  service: 'drest_cms',
+  environment: 'development',
+  method: 'GET',
+  url: '/',
+  statusCode: 304,
+  duration: '9ms',
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  ip: '::1',
+  userId: undefined,
+  level: 'info',
+  message: 'HTTP Request',
+  timestamp: '2025-07-15 11:03:17'
+}
+{
+  service: 'drest_cms',
+  environment: 'development',
+  method: 'GET',
+  url: '/swagger-ui-init.js',
+  statusCode: 304,
+  duration: '1ms',
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  ip: '::1',
+  userId: undefined,
+  level: 'info',
+  message: 'HTTP Request',
+  timestamp: '2025-07-15 11:03:17'
+}
+{
+  service: 'drest_cms',
+  environment: 'development',
+  method: 'GET',
+  url: '/swagger-ui.css',
+  statusCode: 304,
+  duration: '3ms',
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  ip: '::1',
+  userId: undefined,
+  level: 'info',
+  message: 'HTTP Request',
+  timestamp: '2025-07-15 11:03:17'
+}
+{
+  service: 'drest_cms',
+  environment: 'development',
+  method: 'GET',
+  url: '/swagger-ui-bundle.js',
+  statusCode: 304,
+  duration: '3ms',
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  ip: '::1',
+  userId: undefined,
+  level: 'info',
+  message: 'HTTP Request',
+  timestamp: '2025-07-15 11:03:17'
+}
+{
+  service: 'drest_cms',
+  environment: 'development',
+  method: 'GET',
+  url: '/swagger-ui-standalone-preset.js',
+  statusCode: 304,
+  duration: '0ms',
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  ip: '::1',
+  userId: undefined,
+  level: 'info',
+  message: 'HTTP Request',
+  timestamp: '2025-07-15 11:03:17'
+}
+{
+  service: 'drest_cms',
+  environment: 'development',
+  method: 'GET',
+  url: '/favicon-32x32.png',
+  statusCode: 304,
+  duration: '1ms',
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  ip: '::1',
+  userId: undefined,
+  level: 'info',
+  message: 'HTTP Request',
+  timestamp: '2025-07-15 11:03:17'
+}
+{
+  message: 'Checking database connection...',
+  level: 'info',
+  service: 'drest_cms',
+  environment: 'development',
+  timestamp: '2025-07-15 11:03:40'
+}
+{
+  message: 'Database connection successful',
+  level: 'info',
+  service: 'drest_cms',
+  environment: 'development',
+  timestamp: '2025-07-15 11:03:43'
+}
+{
+  service: 'drest_cms',
+  environment: 'development',
+  products: 1,
+  categories: 2,
+  users: 0,
+  orders: 0,
+  level: 'info',
+  message: 'Database statistics:',
+  timestamp: '2025-07-15 11:03:45'
+}
+{
+  message: '🚀 Server started successfully!',
+  level: 'info',
+  service: 'drest_cms',
+  environment: 'development',
+  timestamp: '2025-07-15 11:03:45'
+}
+{
+  message: '📝 Environment: development',
+  level: 'info',
+  service: 'drest_cms',
+  environment: 'development',
+  timestamp: '2025-07-15 11:03:45'
+}
+{
+  message: '🌐 Server running on port 3000',
+  level: 'info',
+  service: 'drest_cms',
+  environment: 'development',
+  timestamp: '2025-07-15 11:03:45'
+}
+{
+  message: '🔗 API URL: http://localhost:3000/api/v1',
+  level: 'info',
+  service: 'drest_cms',
+  environment: 'development',
+  timestamp: '2025-07-15 11:03:45'
+}
+{
+  message: '📊 Health check: http://localhost:3000/health',
+  level: 'info',
+  service: 'drest_cms',
+  environment: 'development',
+  timestamp: '2025-07-15 11:03:45'
+}
+{
+  message: '🎨 Admin Dashboard: http://localhost:3000/admin',
+  level: 'info',
+  service: 'drest_cms',
+  environment: 'development',
+  timestamp: '2025-07-15 11:03:45'
+}
+{
+  message: '📚 API Documentation: http://localhost:3000/api/v1/docs',
+  level: 'info',
+  service: 'drest_cms',
+  environment: 'development',
+  timestamp: '2025-07-15 11:03:45'
+}
+{
+  service: 'drest_cms',
+  environment: 'development',
+  method: 'GET',
+  url: '/',
+  statusCode: 304,
+  duration: '7ms',
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  ip: '::1',
+  userId: undefined,
+  level: 'info',
+  message: 'HTTP Request',
+  timestamp: '2025-07-15 11:03:48'
+}
+{
+  service: 'drest_cms',
+  environment: 'development',
+  method: 'GET',
+  url: '/swagger-ui.css',
+  statusCode: 304,
+  duration: '6ms',
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  ip: '::1',
+  userId: undefined,
+  level: 'info',
+  message: 'HTTP Request',
+  timestamp: '2025-07-15 11:03:48'
+}
+{
+  service: 'drest_cms',
+  environment: 'development',
+  method: 'GET',
+  url: '/swagger-ui-bundle.js',
+  statusCode: 304,
+  duration: '2ms',
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  ip: '::1',
+  userId: undefined,
+  level: 'info',
+  message: 'HTTP Request',
+  timestamp: '2025-07-15 11:03:48'
+}
+{
+  service: 'drest_cms',
+  environment: 'development',
+  method: 'GET',
+  url: '/swagger-ui-standalone-preset.js',
+  statusCode: 304,
+  duration: '6ms',
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  ip: '::1',
+  userId: undefined,
+  level: 'info',
+  message: 'HTTP Request',
+  timestamp: '2025-07-15 11:03:48'
+}
+{
+  service: 'drest_cms',
+  environment: 'development',
+  method: 'GET',
+  url: '/swagger-ui-init.js',
+  statusCode: 200,
+  duration: '19ms',
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  ip: '::1',
+  userId: undefined,
+  level: 'info',
+  message: 'HTTP Request',
+  timestamp: '2025-07-15 11:03:48'
+}
+{
+  service: 'drest_cms',
+  environment: 'development',
+  method: 'GET',
+  url: '/favicon-32x32.png',
+  statusCode: 304,
+  duration: '0ms',
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  ip: '::1',
+  userId: undefined,
+  level: 'info',
+  message: 'HTTP Request',
+  timestamp: '2025-07-15 11:03:48'
+}
+{
+  service: 'drest_cms',
+  environment: 'development',
+  method: 'GET',
+  url: '/favicon-32x32.png',
+  statusCode: 304,
+  duration: '8ms',
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  ip: '::1',
+  userId: undefined,
+  level: 'info',
+  message: 'HTTP Request',
+  timestamp: '2025-07-15 11:03:48'
+}
+{
+  message: 'Received SIGINT, disconnecting from database...',
+  level: 'info',
+  service: 'drest_cms',
+  environment: 'development',
+  timestamp: '2025-07-15 11:05:54'
+}
+{
+  message: 'Received SIGINT. Starting graceful shutdown...',
+  level: 'info',
+  service: 'drest_cms',
+  environment: 'development',
+  timestamp: '2025-07-15 11:05:54'
+}

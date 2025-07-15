@@ -1,0 +1,28 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const categorires_controller_1 = require("../controllers/categorires.controller");
+const auth_middleware_1 = require("../middleware/auth.middleware");
+const validation_middleware_1 = require("../middleware/validation.middleware");
+const category_validator_1 = require("../validators/category.validator");
+const router = (0, express_1.Router)();
+const categoriesController = new categorires_controller_1.CategoriesController();
+router.get('/', (0, auth_middleware_1.requirePermission)('categories.read'), categoriesController.getCategories);
+router.get('/stats', (0, auth_middleware_1.requirePermission)('categories.read'), categoriesController.getCategoryStats);
+router.get('/search', (0, auth_middleware_1.requirePermission)('categories.read'), categoriesController.searchCategories);
+router.get('/:id', (0, auth_middleware_1.requirePermission)('categories.read'), categoriesController.getCategory);
+router.get('/:id/breadcrumb', (0, auth_middleware_1.requirePermission)('categories.read'), categoriesController.getCategoryBreadcrumb);
+router.get('/:id/attributes', (0, auth_middleware_1.requirePermission)('categories.read'), categoriesController.getCategoryAttributes);
+router.post('/', (0, auth_middleware_1.requirePermission)('categories.create'), (0, validation_middleware_1.validateRequest)(category_validator_1.categoryValidators.create), categoriesController.createCategory);
+router.post('/:id/attributes', (0, auth_middleware_1.requirePermission)('categories.create'), (0, validation_middleware_1.validateRequest)(category_validator_1.categoryValidators.createAttribute), categoriesController.createCategoryAttribute);
+router.put('/:id', (0, auth_middleware_1.requirePermission)('categories.update'), (0, validation_middleware_1.validateRequest)(category_validator_1.categoryValidators.update), categoriesController.updateCategory);
+router.patch('/:id/status', (0, auth_middleware_1.requirePermission)('categories.update'), (0, validation_middleware_1.validateRequest)(category_validator_1.categoryValidators.updateStatus), categoriesController.updateCategoryStatus);
+router.patch('/reorder', (0, auth_middleware_1.requirePermission)('categories.update'), (0, validation_middleware_1.validateRequest)(category_validator_1.categoryValidators.reorder), categoriesController.reorderCategories);
+router.patch('/:id/move', (0, auth_middleware_1.requirePermission)('categories.update'), (0, validation_middleware_1.validateRequest)(category_validator_1.categoryValidators.move), categoriesController.moveCategory);
+router.put('/:id/attributes/:attributeId', (0, auth_middleware_1.requirePermission)('categories.update'), (0, validation_middleware_1.validateRequest)(category_validator_1.categoryValidators.updateAttribute), categoriesController.updateCategoryAttribute);
+router.patch('/bulk-update', (0, auth_middleware_1.requirePermission)('categories.update'), (0, validation_middleware_1.validateRequest)(category_validator_1.categoryValidators.bulkUpdate), categoriesController.bulkUpdateCategories);
+router.delete('/:id', (0, auth_middleware_1.requirePermission)('categories.delete'), categoriesController.deleteCategory);
+router.delete('/:id/attributes/:attributeId', (0, auth_middleware_1.requirePermission)('categories.delete'), categoriesController.deleteCategoryAttribute);
+router.get('/export/csv', (0, auth_middleware_1.requirePermission)('categories.read'), categoriesController.exportCategories);
+exports.default = router;
+//# sourceMappingURL=categories.routes.js.map
