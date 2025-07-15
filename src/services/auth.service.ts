@@ -5,22 +5,6 @@ import { prisma } from '@/config/database';
 import { AuthenticationError, ValidationError } from '@/middleware/error.middleware';
 import { logger, logSecurityEvent } from '@/utils/logger';
 
-// interface UserProfile {
-//   id: string;
-//   email: string;
-//   firstName: string;
-//   lastName: string;
-//   role: AdminRole;
-//   permissions: any;
-//   avatar?: string;
-//   lastLoginAt?: Date;
-//   createdAt: Date;
-// }
-
-interface SessionData {
-  userAgent?: string;
-  ipAddress?: string;
-}
 
 export class AuthService {
   /**
