@@ -24,14 +24,6 @@ interface SortingOptions {
   sortOrder: 'asc' | 'desc';
 }
 
-interface IncludeOptions {
-  variants?: boolean;
-  inventory?: boolean;
-  category?: boolean;
-  brand?: boolean;
-  reviews?: boolean;
-}
-
 export class ProductService {
   /**
    * Get products with filtering, pagination, and sorting
@@ -139,53 +131,68 @@ export class ProductService {
   /**
    * Get product by ID
    */
-  async getProductById(id: string, include: IncludeOptions = {}) {
-    const product = await prisma.product.findUnique({
-      where: { id },
-      include: {
-        category: include.category ? {
-          select: {
-            id: true,
-            name: true,
-            slug: true,
-            description: true
-          }
-        } : false,
-        brand: include.brand ? {
-          select: {
-            id: true,
-            name: true,
-            slug: true,
-            description: true,
-            logo: true
-          }
-        } : false,
-        variants: include.variants ? {
-          include: {
-            inventory: include.inventory
-          }
-        } : false,
-        inventory: include.inventory && !include.variants,
-        reviews: include.reviews ? {
-          where: { status: 'APPROVED' },
-          include: {
-            user: {
-              select: {
-                id: true,
-                firstName: true,
-                lastName: true
-              }
-            }
-          },
-          orderBy: { createdAt: 'desc' }
-        } : false,
-        _count: {
-          select: {
-            variants: true,
-            reviews: true
-          }
+  async getProductById(id: string, include: any) {
+    const includeClause: Prisma.ProductInclude = {
+      _count: {
+        select: {
+          variants: true,
+          reviews: true
         }
       }
+    };
+
+    if (include.category) {
+      includeClause.category = {
+        select: {
+          id: true,
+          name: true,
+          slug: true,
+          description: true
+        }
+      };
+    }
+
+    if (include.brand) {
+      includeClause.brand = {
+        select: {
+          id: true,
+          name: true,
+          slug: true,
+          description: true,
+          logo: true
+        }
+      };
+    }
+
+    if (include.variants) {
+      includeClause.variants = {
+        include: {
+          inventory: !!include.inventory
+        }
+      };
+    } else if (include.inventory) {
+      includeClause.inventory = true;
+    }
+
+    if (include.reviews) {
+      includeClause.reviews = {
+        where: { status: 'APPROVED' },
+        include: {
+          user: {
+            select: {
+              id: true,
+              firstName: true,
+              lastName: true
+            }
+          }
+        },
+        orderBy: { createdAt: 'desc' }
+      };
+    }
+
+    const product = await prisma.product.findUnique({
+      where: { id },
+      include: includeClause
     });
 
     return product;
@@ -229,11 +236,13 @@ export class ProductService {
       }
     }
 
+    const createData = {
+      ...data,
+      publishedAt: data.isActive ? new Date() : null
+    };
+
     const product = await prisma.product.create({
-      data: {
-        ...data,
-        publishedAt: data.isActive ? new Date() : null
-      },
+      data: createData,
       include: {
         category: {
           select: {
@@ -432,11 +441,38 @@ export class ProductService {
       counter++;
     }
 
-    const { id: originalId, createdAt, updatedAt, publishedAt, ...productData } = originalProduct;
+    // Extract only product fields, excluding relations and system fields
+    const {
+      id: originalId,
+      createdAt,
+      updatedAt,
+      publishedAt,
+      variants,
+      ...productData
+    } = originalProduct;
 
     const duplicatedProduct = await prisma.product.create({
       data: {
-        ...productData,
+        // ...productData,
+    id: originalId, // Keep original ID to avoid conflicts
+    description: originalProduct.description,
+    seoTitle: originalProduct.seoTitle,
+    seoDescription: originalProduct.seoDescription,
+    shortDescription: originalProduct.shortDescription,
+    basePrice: originalProduct.basePrice,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    comparePrice: originalProduct.comparePrice,
+    costPrice: originalProduct.costPrice,
+    images: originalProduct.images as any,
+    videos: originalProduct.videos as any,
+    tags: originalProduct.tags,
+    requiresShipping: originalProduct.requiresShipping,
+    trackInventory: originalProduct.trackInventory,
+    allowBackorder: originalProduct.allowBackorder,
+    lowStockThreshold: originalProduct.lowStockThreshold!,
+    categoryId: originalProduct.categoryId,
+    brandId: originalProduct.brandId,
         name: productName,
         slug: finalSlug,
         isActive: false, // Start as inactive
@@ -448,11 +484,26 @@ export class ProductService {
     // Duplicate variants if any
     if (originalProduct.variants.length > 0) {
       const variantPromises = originalProduct.variants.map(variant => {
-        const { id: variantId, productId, createdAt: vCreatedAt, updatedAt: vUpdatedAt, ...variantData } = variant;
+        const {
+          id: variantId,
+          productId,
+          createdAt: vCreatedAt,
+          updatedAt: vUpdatedAt,
+          ...variantData
+        } = variant;
         
         return prisma.productVariant.create({
           data: {
             ...variantData,
+             name: variantData.name,
+            id: variantId,
+            isActive: variantData.isActive,
+            price: variantData.price,
+            comparePrice: variantData.comparePrice,
+            costPrice: variantData.costPrice,
+            images: variantData.images as any,
+            attributes: variantData.attributes as any,
+            barcode: variantData.barcode,
             productId: duplicatedProduct.id,
             sku: `${variantData.sku}-copy-${Date.now()}`
           }
@@ -627,13 +678,15 @@ export class ProductService {
     const skip = (page - 1) * limit;
 
     // Get category
+    const includeClause = includeSubcategories ? {
+      children: {
+        select: { id: true }
+      }
+    } : {};
+
     const category = await prisma.category.findUnique({
       where: { id: categoryId },
-      include: {
-        children: includeSubcategories ? {
-          select: { id: true }
-        } : false
-      }
+      include: includeClause
     });
 
     if (!category) {
@@ -642,7 +695,7 @@ export class ProductService {
 
     // Build category filter
     const categoryIds = [categoryId];
-    if (includeSubcategories && category.children) {
+    if (includeSubcategories && 'children' in category && category.children) {
       categoryIds.push(...category.children.map(child => child.id));
     }
 
@@ -800,15 +853,15 @@ export class ProductService {
   /**
    * Import products from file
    */
-  async importProducts(file: any ){
-    const results : any = { successful: [], errors: [] };
+  async importProducts(file: any) {
+    const results: any = { successful: [], errors: [] };
     
     // This is a simplified version - you'd want to use a proper CSV/Excel parser
     // and implement detailed validation
     
     try {
       const stream = Readable.from(file.buffer);
-      const products : any= [];
+      const products: any = [];
       
       await new Promise((resolve, reject) => {
         stream
@@ -879,15 +932,23 @@ export class ProductService {
     });
 
     if (defaultLocation) {
-      await prisma.inventory.create({
-        data: {
-          productId: variantId ? null : productId,
-          variantId: variantId || null,
-          quantity: 0,
-          reserved: 0,
-          available: 0,
-          locationId: defaultLocation.id
+      const inventoryData: Prisma.InventoryCreateInput = {
+        quantity: 0,
+        reserved: 0,
+        available: 0,
+        location: {
+          connect: { id: defaultLocation.id }
         }
+      };
+
+      if (variantId) {
+        inventoryData.variant = { connect: { id: variantId } };
+      } else {
+        inventoryData.product = { connect: { id: productId } };
+      }
+
+      await prisma.inventory.create({
+        data: inventoryData
       });
     }
   }

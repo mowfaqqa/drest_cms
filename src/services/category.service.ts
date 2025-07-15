@@ -22,47 +22,39 @@ export class CategoryService {
    * Get category hierarchy (tree structure)
    */
   async getCategoryHierarchy(options: CategoryOptions = {}) {
-    const categories = await prisma.category.findMany({
-      where: {
-        parentId: null,
-        ...(options.isActive !== undefined && { isActive: options.isActive })
-      },
+    // Build the where clause conditionally
+    const whereClause: Prisma.CategoryWhereInput = {
+      parentId: null
+    };
+    
+    if (options.isActive !== undefined) {
+      whereClause.isActive = options.isActive;
+    }
+
+    // Build children where clause
+    const childrenWhere: Prisma.CategoryWhereInput = {};
+    if (options.isActive !== undefined) {
+      childrenWhere.isActive = options.isActive;
+    }
+
+    // Build include objects conditionally
+    const childrenInclude: Prisma.Category$childrenArgs = {
       include: {
         children: {
-          where: options.isActive !== undefined ? { isActive: options.isActive } : undefined,
           include: {
-            children: {
-              where: options.isActive !== undefined ? { isActive: options.isActive } : undefined,
-              include: {
-                children: true,
-                products: options.includeProducts ? {
-                  where: { isActive: true },
-                  select: {
-                    id: true,
-                    name: true,
-                    slug: true,
-                    basePrice: true,
-                    images: true
-                  }
-                } : false,
-                _count: {
-                  select: {
-                    products: true
-                  }
+            children: true,
+            ...(options.includeProducts && {
+              products: {
+                where: { isActive: true },
+                select: {
+                  id: true,
+                  name: true,
+                  slug: true,
+                  basePrice: true,
+                  images: true
                 }
-              },
-              orderBy: { sortOrder: 'asc' }
-            },
-            products: options.includeProducts ? {
-              where: { isActive: true },
-              select: {
-                id: true,
-                name: true,
-                slug: true,
-                basePrice: true,
-                images: true
               }
-            } : false,
+            }),
             _count: {
               select: {
                 products: true
@@ -71,16 +63,54 @@ export class CategoryService {
           },
           orderBy: { sortOrder: 'asc' }
         },
-        products: options.includeProducts ? {
-          where: { isActive: true },
-          select: {
-            id: true,
-            name: true,
-            slug: true,
-            basePrice: true,
-            images: true
+        ...(options.includeProducts && {
+          products: {
+            where: { isActive: true },
+            select: {
+              id: true,
+              name: true,
+              slug: true,
+              basePrice: true,
+              images: true
+            }
           }
-        } : false,
+        }),
+        _count: {
+          select: {
+            products: true
+          }
+        }
+      },
+      orderBy: { sortOrder: 'asc' }
+    };
+
+    // Add where clause only if needed
+    // if (Object.keys(childrenWhere).length > 0) {
+    //   childrenInclude.where = childrenWhere;
+    //   if (childrenInclude.include?.children) {
+    //     childrenInclude.include.children.where = childrenWhere;
+    //     if (childrenInclude.include.children.include?.children) {
+    //       childrenInclude.include.children.include.children.where = childrenWhere;
+    //     }
+    //   }
+    // }
+
+    const categories = await prisma.category.findMany({
+      where: whereClause,
+      include: {
+        children: childrenInclude,
+        ...(options.includeProducts && {
+          products: {
+            where: { isActive: true },
+            select: {
+              id: true,
+              name: true,
+              slug: true,
+              basePrice: true,
+              images: true
+            }
+          }
+        }),
         _count: {
           select: {
             products: true,
@@ -99,49 +129,59 @@ export class CategoryService {
    */
   async getFlatCategories(options: FlatCategoryOptions) {
     const { pagination } = options;
-    const skip = pagination ? (pagination.page - 1) * pagination.limit : 0;
-    const take = pagination?.limit;
 
     const where: Prisma.CategoryWhereInput = {};
     if (options.isActive !== undefined) {
       where.isActive = options.isActive;
     }
 
+    const includeClause: Prisma.CategoryInclude = {
+      parent: {
+        select: {
+          id: true,
+          name: true,
+          slug: true
+        }
+      },
+      _count: {
+        select: {
+          products: true,
+          children: true
+        }
+      }
+    };
+
+    if (options.includeProducts) {
+      includeClause.products = {
+        where: { isActive: true },
+        select: {
+          id: true,
+          name: true,
+          slug: true,
+          basePrice: true,
+          images: true
+        }
+      };
+    }
+
+    // Build query options conditionally
+    const queryOptions: Prisma.CategoryFindManyArgs = {
+      where,
+      include: includeClause,
+      orderBy: [
+        { sortOrder: 'asc' },
+        { name: 'asc' }
+      ]
+    };
+
+    // Add pagination only if provided
+    if (pagination) {
+      queryOptions.skip = (pagination.page - 1) * pagination.limit;
+      queryOptions.take = pagination.limit;
+    }
+
     const [categories, total] = await Promise.all([
-      prisma.category.findMany({
-        where,
-        skip,
-        take,
-        include: {
-          parent: {
-            select: {
-              id: true,
-              name: true,
-              slug: true
-            }
-          },
-          products: options.includeProducts ? {
-            where: { isActive: true },
-            select: {
-              id: true,
-              name: true,
-              slug: true,
-              basePrice: true,
-              images: true
-            }
-          } : false,
-          _count: {
-            select: {
-              products: true,
-              children: true
-            }
-          }
-        },
-        orderBy: [
-          { sortOrder: 'asc' },
-          { name: 'asc' }
-        ]
-      }),
+      prisma.category.findMany(queryOptions),
       prisma.category.count({ where })
     ]);
 
@@ -152,46 +192,54 @@ export class CategoryService {
    * Get category by ID
    */
   async getCategoryById(id: string, options: CategoryOptions = {}) {
-    const category = await prisma.category.findUnique({
-      where: { id },
-      include: {
-        parent: {
-          select: {
-            id: true,
-            name: true,
-            slug: true
-          }
-        },
-        children: options.includeChildren ? {
-          include: {
-            _count: {
-              select: {
-                products: true
-              }
-            }
-          },
-          orderBy: { sortOrder: 'asc' }
-        } : false,
-        products: options.includeProducts ? {
-          where: { isActive: true },
-          select: {
-            id: true,
-            name: true,
-            slug: true,
-            basePrice: true,
-            images: true
-          }
-        } : false,
-        attributes: {
-          orderBy: { sortOrder: 'asc' }
-        },
-        _count: {
-          select: {
-            products: true,
-            children: true
-          }
+    const includeClause: Prisma.CategoryInclude = {
+      parent: {
+        select: {
+          id: true,
+          name: true,
+          slug: true
+        }
+      },
+      attributes: {
+        orderBy: { sortOrder: 'asc' }
+      },
+      _count: {
+        select: {
+          products: true,
+          children: true
         }
       }
+    };
+
+    if (options.includeChildren) {
+      includeClause.children = {
+        include: {
+          _count: {
+            select: {
+              products: true
+            }
+          }
+        },
+        orderBy: { sortOrder: 'asc' }
+      };
+    }
+
+    if (options.includeProducts) {
+      includeClause.products = {
+        where: { isActive: true },
+        select: {
+          id: true,
+          name: true,
+          slug: true,
+          basePrice: true,
+          images: true
+        }
+      };
+    }
+
+    const category = await prisma.category.findUnique({
+      where: { id },
+      include: includeClause
     });
 
     return category;
@@ -657,7 +705,7 @@ export class CategoryService {
       activeCategories,
       categoriesWithProducts,
       rootCategories,
-      averageProductsPerCategory
+      categoryProductCounts
     ] = await Promise.all([
       prisma.category.count(),
       prisma.category.count({ where: { isActive: true } }),
@@ -669,14 +717,20 @@ export class CategoryService {
         }
       }),
       prisma.category.count({ where: { parentId: null } }),
-      prisma.category.aggregate({
-        _avg: {
-          products: {
-            _count: true
+      prisma.category.findMany({
+        select: {
+          _count: {
+            select: {
+              products: true
+            }
           }
         }
       })
     ]);
+
+    // Calculate average products per category manually
+    const totalProducts = categoryProductCounts.reduce((sum, category) => sum + category._count.products, 0);
+    const averageProductsPerCategory = totalCategories > 0 ? Math.round(totalProducts / totalCategories) : 0;
 
     return {
       totalCategories,
@@ -684,7 +738,7 @@ export class CategoryService {
       categoriesWithProducts,
       rootCategories,
       inactiveCategories: totalCategories - activeCategories,
-      averageProductsPerCategory: Math.round(averageProductsPerCategory._avg.products || 0)
+      averageProductsPerCategory
     };
   }
 
@@ -706,20 +760,25 @@ export class CategoryService {
    * Export categories
    */
   async exportCategories(format: string, includeHierarchy: boolean = true) {
-    const categories = await prisma.category.findMany({
-      include: {
-        parent: includeHierarchy ? {
-          select: {
-            name: true
-          }
-        } : false,
-        _count: {
-          select: {
-            products: true,
-            children: true
-          }
+    const includeClause: Prisma.CategoryInclude = {
+      _count: {
+        select: {
+          products: true,
+          children: true
         }
-      },
+      }
+    };
+
+    if (includeHierarchy) {
+      includeClause.parent = {
+        select: {
+          name: true
+        }
+      };
+    }
+
+    const categories = await prisma.category.findMany({
+      include: includeClause,
       orderBy: [
         { sortOrder: 'asc' },
         { name: 'asc' }

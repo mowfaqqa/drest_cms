@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import { prisma } from '@/config/database';
 import { AuthenticationError, AuthorizationError } from '@/middleware/error.middleware';
-import { logger, logSecurityEvent } from '@/utils/logger';
+import { logSecurityEvent } from '@/utils/logger';
 import { AdminRole } from '@prisma/client';
 
 // Extend Request interface to include user
@@ -36,7 +36,7 @@ const extractToken = (req: Request): string | null => {
   }
 
   // Check cookies
-  const cookieToken = req.cookies?.accessToken;
+  const cookieToken = req.cookies?.['accessToken'];
   if (cookieToken) {
     return cookieToken;
   }

@@ -32,29 +32,6 @@ if (process.env['NODE_ENV'] === 'development') {
   globalThis.__prisma = prisma;
 }
 
-// Logging for queries in development
-if (process.env['NODE_ENV'] === 'development') {
-  prisma.$on('query', (e: any) => {
-    logger.debug('Query: ' + e.query);
-    logger.debug('Params: ' + e.params);
-    logger.debug('Duration: ' + e.duration + 'ms');
-  });
-}
-
-// Error logging
-prisma.$on('error', (e: any) => {
-  logger.error('Prisma Error:', e);
-});
-
-// Connection lifecycle logging
-prisma.$on('info', (e: any) => {
-  logger.info('Prisma Info:', e.message);
-});
-
-prisma.$on('warn', (e: any) => {
-  logger.warn('Prisma Warning:', e.message);
-});
-
 // Graceful shutdown
 process.on('beforeExit', async () => {
   logger.info('Disconnecting from database...');

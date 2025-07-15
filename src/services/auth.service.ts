@@ -5,17 +5,17 @@ import { prisma } from '@/config/database';
 import { AuthenticationError, ValidationError } from '@/middleware/error.middleware';
 import { logger, logSecurityEvent } from '@/utils/logger';
 
-interface UserProfile {
-  id: string;
-  email: string;
-  firstName: string;
-  lastName: string;
-  role: AdminRole;
-  permissions: any;
-  avatar?: string;
-  lastLoginAt?: Date;
-  createdAt: Date;
-}
+// interface UserProfile {
+//   id: string;
+//   email: string;
+//   firstName: string;
+//   lastName: string;
+//   role: AdminRole;
+//   permissions: any;
+//   avatar?: string;
+//   lastLoginAt?: Date;
+//   createdAt: Date;
+// }
 
 interface SessionData {
   userAgent?: string;
@@ -87,15 +87,30 @@ export class AuthService {
    * Store refresh token in database
    */
   async storeRefreshToken(userId: string, refreshToken: string, sessionData: SessionData) {
-    await prisma.userSession.create({
-      data: {
-        userId,
-        refreshToken,
-        deviceInfo: sessionData.userAgent ? { userAgent: sessionData.userAgent } : null,
-        ipAddress: sessionData.ipAddress,
-        expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 days
-        isActive: true
-      }
+    const createData: {
+      adminUserId: string;
+      refreshToken: string;
+      expiresAt: Date;
+      isActive: boolean;
+      deviceInfo?: { userAgent: string };
+      ipAddress?: string;
+    } = {
+      adminUserId: userId,
+      refreshToken,
+      expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 days
+      isActive: true
+    };
+
+    if (sessionData.userAgent) {
+      createData.deviceInfo = { userAgent: sessionData.userAgent };
+    }
+
+    if (sessionData.ipAddress) {
+      createData.ipAddress = sessionData.ipAddress;
+    }
+
+    await prisma.adminSession.create({
+      data: createData
     });
   }
 
@@ -104,14 +119,13 @@ export class AuthService {
    */
   async refreshAccessToken(refreshToken: string): Promise<{ accessToken: string }> {
     try {
-      // Verify refresh token
-      const decoded = jwt.verify(refreshToken, process.env['JWT_REFRESH_SECRET']!) as { userId: string };
+   
 
       // Check if refresh token exists and is active
-      const session = await prisma.userSession.findUnique({
+      const session = await prisma.adminSession.findUnique({
         where: { refreshToken },
         include: {
-          user: {
+          adminUser: {
             select: {
               id: true,
               email: true,
@@ -126,23 +140,23 @@ export class AuthService {
         throw new AuthenticationError('Invalid or expired refresh token');
       }
 
-      if (!session.user.isActive) {
+      if (!session.adminUser.isActive) {
         throw new AuthenticationError('Account has been deactivated');
       }
 
       // Generate new access token
       const accessToken = jwt.sign(
         {
-          userId: session.user.id,
-          email: session.user.email,
-          role: session.user.role
+          userId: session.adminUser.id,
+          email: session.adminUser.email,
+          role: session.adminUser.role
         },
         process.env['JWT_SECRET']!,
         {
           expiresIn: process.env['JWT_EXPIRES_IN'] || '15m',
           issuer: 'drest-cms',
           audience: 'drest-admin'
-        }
+        } as any
       );
 
       return { accessToken };
@@ -159,7 +173,7 @@ export class AuthService {
    * Revoke refresh token
    */
   async revokeRefreshToken(refreshToken: string): Promise<void> {
-    await prisma.userSession.updateMany({
+    await prisma.adminSession.updateMany({
       where: { refreshToken },
       data: { isActive: false }
     });
@@ -169,8 +183,8 @@ export class AuthService {
    * Revoke all refresh tokens for a user
    */
   async revokeAllRefreshTokens(userId: string): Promise<void> {
-    await prisma.userSession.updateMany({
-      where: { userId },
+    await prisma.adminSession.updateMany({
+      where: { adminUserId: userId },
       data: { isActive: false }
     });
   }
@@ -188,7 +202,7 @@ export class AuthService {
   /**
    * Get user profile
    */
-  async getUserProfile(userId: string): Promise<UserProfile> {
+  async getUserProfile(userId: string) {
     const user = await prisma.adminUser.findUnique({
       where: { id: userId },
       select: {
@@ -228,7 +242,7 @@ export class AuthService {
     firstName?: string;
     lastName?: string;
     avatar?: string;
-  }): Promise<UserProfile> {
+  }) {
     const user = await prisma.adminUser.update({
       where: { id: userId },
       data: {
@@ -302,9 +316,9 @@ export class AuthService {
    * Get active sessions for a user
    */
   async getActiveSessions(userId: string) {
-    return await prisma.userSession.findMany({
+    return await prisma.adminSession.findMany({
       where: {
-        userId,
+        adminUserId: userId,
         isActive: true,
         expiresAt: { gt: new Date() }
       },
@@ -324,10 +338,10 @@ export class AuthService {
    * Revoke specific session
    */
   async revokeSession(userId: string, sessionId: string): Promise<void> {
-    const session = await prisma.userSession.findFirst({
+    const session = await prisma.adminSession.findFirst({
       where: {
         id: sessionId,
-        userId
+        adminUserId: userId
       }
     });
 
@@ -335,7 +349,7 @@ export class AuthService {
       throw new ValidationError('Session not found');
     }
 
-    await prisma.userSession.update({
+    await prisma.adminSession.update({
       where: { id: sessionId },
       data: { isActive: false }
     });
@@ -351,7 +365,7 @@ export class AuthService {
     lastName: string;
     role: AdminRole;
     permissions?: any;
-  }): Promise<UserProfile> {
+  }){
     const existingUser = await prisma.adminUser.findUnique({
       where: { email: data.email.toLowerCase() }
     });
@@ -402,7 +416,7 @@ export class AuthService {
    * Clean up expired sessions
    */
   async cleanupExpiredSessions(): Promise<number> {
-    const result = await prisma.userSession.deleteMany({
+    const result = await prisma.adminSession.deleteMany({
       where: {
         OR: [
           { expiresAt: { lt: new Date() } },
@@ -411,7 +425,7 @@ export class AuthService {
       }
     });
 
-    logger.info(`Cleaned up ${result.count} expired sessions`);
+    logger.info(`Cleaned up ${result.count} expired admin sessions`);
     return result.count;
   }
 }
